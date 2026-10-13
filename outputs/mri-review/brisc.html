@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Upload one supported brain MRI research image and explore a clearly explained category suggestion. Experimental slice-level results; clinical diagnosis is not established."><title>BrainLens · Explore an MRI image</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/brisc.css"><script type="module" src="/brisc-ui.mjs"></script></head>
+<body class="slice-page">
+<a class="skip-link" href="#sliceInput">Skip to image upload</a>
+<header><a href="/" class="brand">BrainLens <span>Brain MRI research and review</span></a><span class="badge">Single-image research</span></header>
+<main>
+ <section class="intro"><p class="eyebrow">An easier way to explore MRI research</p><h1>One MRI image.<br>A clearly explained result.</h1><p>Choose a supported brain MRI image, let the local model analyze it, then see its category suggestion in plain language. A <strong>slice</strong> is one image from a larger MRI scan.</p><div class="intro-actions"><a class="button-link" href="#sliceInput">Start with an image</a><a href="/">Explore the separate 3D MRI viewer</a></div></section>
+ <ol class="slice-steps" aria-label="How image analysis works"><li><strong>1. Upload an image</strong><span>Choose a supported JPG or PNG.</span></li><li><strong>2. Analyze it</strong><span>Confirm the image details and run the local model.</span></li><li><strong>3. Understand the result</strong><span>Read the suggested category, explanation and limits.</span></li></ol>
+ <div class="notice"><strong>Research results, with clear limits.</strong> This model suggests a category for one image. It cannot confirm a diagnosis or tell you whether the whole brain is healthy. The whole examination remains inconclusive. A tumour can be missed.</div>
+ <div class="workspace">
+  <section class="panel"><h2 id="sliceInput" tabindex="-1">Upload your research image</h2>
+   <p id="sliceHelp">Choose one JPG or PNG brain MRI slice, up to 8 MB. Its scan information must confirm <strong>T1 with contrast</strong> (contrast-enhanced T1). The app cannot verify this from the picture.</p>
+   <label class="upload" for="sliceFile">Choose MRI image<input id="sliceFile" type="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" aria-describedby="sliceHelp sliceFileStatus sliceUploadError" aria-invalid="false"></label>
+   <p id="sliceFileStatus" role="status">No image selected yet.</p>
+   <p id="sliceUploadError" class="input-error" role="alert"></p>
+   <div class="canvas-wrap"><p id="sliceEmpty">Your selected image appears here.</p><canvas id="sliceCanvas" hidden aria-label="Source MRI slice preview"></canvas></div>
+   <label class="consent" for="sliceConsent"><input id="sliceConsent" type="checkbox" aria-describedby="sliceConsentHelp"> I have permission to use this de-identified research image, and its scan details confirm T1 with contrast.</label>
+   <p id="sliceConsentHelp" class="muted">Your confirmation is recorded as a declaration, not independent verification. This app does not remove identifying information. The image stays on this local server; no external AI service is used.</p>
+   <button id="sliceRun" aria-describedby="sliceActionHelp" disabled>Analyze this image</button>
+   <p id="sliceActionHelp" class="muted">Choose a supported MRI image to begin.</p>
+   <p id="sliceModelStatus" role="status" aria-live="polite">Checking the local classifier…</p>
+   <p id="sliceRunStatus" role="status" aria-live="polite"></p>
+   <details><summary>Not sure which image to use?</summary><p>Use a documented research image whose acquisition information confirms T1 with contrast. If you do not know the sequence or contrast status, do not guess. JPG and PNG are image-file formats; they do not tell us how the MRI was acquired.</p><p>Supported images are single-frame JPEG/PNG, 32–4096 pixels per side. T2, FLAIR, WEBP, DICOM, NIfTI volumes, collages and screenshots from the 3D viewer are unsupported here. For compatible NIfTI studies, use the <a href="/">3D MRI viewer</a>.</p></details>
+   <details><summary>What categories has the model learned?</summary><p>The BRISC research dataset has four image labels: <strong>glioma, meningioma, pituitary tumour and no_tumor</strong>. The last label does not mean a healthy brain. Acquisition details and patient grouping are limited, and reliable whole-examination detection has not been established.</p><p>The installed model has its own saved evaluation records. Published BRISC benchmark results are not a guarantee of BrainLens performance.</p></details>
+  </section>
+  <section class="panel result-panel"><h2>Your image result</h2><p id="sliceResultEmpty" class="result-placeholder">Your result will appear here after you analyze an image. The suggested category and its explanation will be shown together.</p>
+   <div id="sliceResult" hidden>
+    <div class="slice-summary" role="status" aria-live="polite" aria-atomic="true">
+     <p class="eyebrow">Experimental category suggestion</p><h3 id="sliceCategory" tabindex="-1"></h3><p id="sliceExplanation"></p><p class="result-unit">Based on one 2D MRI image, not the complete examination.</p>
+     <div class="assessment-grid">
+      <section class="assessment-card" aria-labelledby="sliceBrainHealthHeading"><h4 id="sliceBrainHealthHeading">Whole-brain health</h4><p id="sliceBrainHealth" class="assessment-answer"></p><p id="sliceBrainHealthExplanation"></p></section>
+      <section class="assessment-card" aria-labelledby="sliceOutlineHeading"><h4 id="sliceOutlineHeading">Tumour outline</h4><p id="sliceOutline" class="assessment-answer"></p><p id="sliceOutlineExplanation"></p></section>
+     </div>
+    </div>
+    <p class="muted">For compatible 3D MRI studies, the <a href="/">separate 3D workflow</a> can mark candidate glioma regions and measure their volume. It does not create an outline for this uploaded slice.</p>
+    <details class="result-details"><summary>View model scores and saved result details</summary><div class="table-scroll"><table class="evaluation-table"><caption>Relative model scores — not calibrated probabilities</caption><thead><tr><th scope="col">Dataset category</th><th scope="col">Score (0–1)</th></tr></thead><tbody id="sliceScores"></tbody></table></div><p id="sliceLimitation"></p><p id="sliceProvenance" class="muted"></p></details><button id="sliceExport" class="secondary" disabled>Download this research result</button>
+   </div>
+   <div class="saved-results"><h3>Come back to a saved result</h3><label for="sliceSaved">Saved image results on this server</label><select id="sliceSaved" disabled><option value="">No saved image results</option></select><p><button id="sliceReopen" class="secondary" disabled>Open saved result</button></p></div>
+   <p class="muted">Slice runs are stored separately from the 3D review workflow. They are never combined into an examination diagnosis. Saved inputs and results remain locally until explicitly managed.</p>
+   <p><a href="https://www.nature.com/articles/s41597-026-06753-y" target="_blank" rel="noopener">Read the BRISC dataset publication (opens a new tab)</a></p>
+  </section>
+ </div>
+</main><footer>Slice research supports investigation. Clinical judgment remains with qualified professionals.</footer>
+</body></html>

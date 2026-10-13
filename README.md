@@ -2,7 +2,7 @@
 
 I’ve been building BrainLens to bring a few brain MRI research workflows into one place. You can explore a supported 2D slice, look through a 3D scan, and review the model outputs the app can currently produce.
 
-**[Download the source](https://github.com/Ashwant-Alt/brainlens-showcase/raw/refs/heads/main/BrainLens-program-source.zip)** · **[Setup guide](SETUP.md)** · **[How to use BrainLens](HOW-TO-USE.md)**
+**[Browse the application source](https://github.com/Ashwant-Alt/brainlens-showcase/tree/main/outputs/mri-review)** · **[Setup guide](SETUP.md)** · **[How to use BrainLens](HOW-TO-USE.md)**
 
 ## See it running
 
@@ -21,12 +21,11 @@ The experimental 2D outline model is currently offline while it is improved. Bra
 
 ## Trying it on your computer
 
-1. Download and extract **BrainLens-program-source.zip** into a new folder.
+1. Clone this repository to your computer.
 2. Follow the [setup guide](SETUP.md) to start the local website.
-3. Open [http://127.0.0.1:3000](http://127.0.0.1:3000) on that computer.
-4. Follow [How to use BrainLens](HOW-TO-USE.md) to explore the viewer and review workflow.
+3. Follow [How to use BrainLens](HOW-TO-USE.md) to explore the viewer and review workflow.
 
-The source archive does not include MRI data, Python environments, or trained model checkpoints. The site and viewer can start without those files, but model-based features need separately configured, trusted model files. The 2D checkpoint is not included, so a new user cannot reproduce the category suggestion in the video straight from this repository. BrainLens also has no public upload service; it runs locally.
+The source files are listed individually in this repository. MRI data, Python environments, and trained model checkpoints are separate requirements. The site and viewer can start without those files, but model-based features need separately configured, trusted model files. The 2D checkpoint is not included, so a new user cannot reproduce the category suggestion in the video straight from this repository. BrainLens also has no public upload service; it runs locally.
 
 ## A note on the research
 
@@ -34,6 +33,6 @@ BrainLens is a research project, not a diagnostic tool. Its 2D suggestions apply
 
 Testing has found missed tumour-labelled cases and inconsistent segmentation. The model scores are uncalibrated, and independent patient-level diagnostic validation has not been established. I’m sharing the project with those limitations in view.
 
-The source package contains 64 application files and passed 67 source-only checks on the existing development computer. A clean-computer setup and the complete model-dependent test suite have not been verified. See [package verification](VERIFICATION.json) for the details.
+On the original development computer, the source-only checks passed 67 tests. A clean-computer setup and the complete model-dependent test suite have not been verified.
 
-For image, model, and narration acknowledgements, see [CREDITS.md](CREDITS.md). Third-party licenses still apply to their respective materials; publishing this source does not replace those licenses.
+For image, model, and narration acknowledgements, see [CREDITS.md](CREDITS.md). Third-party licences still apply to their respective materials; publishing this source does not replace those licences.

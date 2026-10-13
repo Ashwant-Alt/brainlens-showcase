@@ -1,0 +1,59 @@
+# Separate BRISC 2D research adapter
+
+The local page is `/slice-research`. Existing 3D MRI viewing, SegResNet's 96³ window, overlays, measurements, review persistence and export are unchanged. The slice adapter uses a separate CPU worker. On this computer, Start-BrainLens.ps1 sets a separate slice-results folder at `D:\BrainLens-research\brisc-2d-prototype-v1\website-runs-v1`; existing 3D jobs retain their established location. `BRAINLENS_SLICE_JOBS_DIR` overrides slice storage. Without that setting the adapter retains its earlier nested `slice-research` namespace, which the 3D UUID inventory ignores.
+
+**Current status, 12 October 2026: a real BRISC-trained compact ResNet-18 is installed and evaluated for local slice research.** The official Kaggle version 6 classification release was acquired and hash-verified under bounded authorization. One from-scratch run selected epoch17 using validation only. The pinned local TorchScript bundle is `D:\BrainLens-research\brisc-2d-prototype-v1\model-bundle-v1\bundle.json`. No pretrained weights or dependencies were downloaded. BRISC is a dataset; this is BrainLens's own reproducible baseline, not the authors' benchmark checkpoint. Missing or altered artifacts still refuse inference; synthetic test fixtures must never replace this model.
+
+The fixed official test has **933/1,000 correct slice categories (93.3%), macro-F1 0.9264, balanced accuracy 94.41%**. The predefined leakage-audited subset has **862/882 correct (97.73%), macro-F1 0.9753, balanced accuracy 97.77%**. Both evaluate the same frozen model. The excluded118 images include105meningioma images and47category errors, so the higher subset score is not a model improvement. Full-set meningioma recall is248/306 (81.05%);42tumour-labelled slices were predictedno_tumor (41meningioma,1glioma). Do not advertise the audited result without the full result and limitations. Patient independence is unknown, and image-style differences correlate with classes. These are image-level research results, not clinical or examination-level detection accuracy.
+
+Audit:134decoded-exact groups,41confirmed-near pairs,12possible-near pairs,91cross-split components;0conflicting-label components.106official training images linked to test images were excluded.3915training/979validation slices were separated by numerical duplicate components before training; the audited882test subset was frozen before predictions.672EXIF-rotated source images use separately verified lossless presentation PNG copies. All originals are preserved. Reports, per-image errors, uncertainty/reliability diagnostics and evidence are in `D:\BrainLens-research\brisc-2d-prototype-v1\report-v1\REPORT.md` and `evaluation-v1`. The acquired release declares CC BY4.0; attribute Fateh etal., BRISC2025 and the pinned release, indicate modifications and link the licence. Upstream rights/consent were not independently certified. No external image sharing or public diagnostic deployment was authorized.
+
+## Input and result scope
+
+One de-identified 8-bit grayscale or RGB JPEG/PNG, 32–4096 pixels per side, at most 8 MB, single frame, no transparency, no unsupported EXIF rotation. The input contract is a contrast-enhanced T1 brain research slice, based on the [BRISC publication](https://www.nature.com/articles/s41597-026-06753-y). The user's acquisition-evidence declaration is recorded as unverified, not inferred from filenames or image pixels. T2/FLAIR, arbitrary photos, DICOM and NIfTI are unsupported. File validation cannot certify anatomy, contrast or modality.
+
+Outputs use `task=slice_classification`, `inputUnit=slice`, `spatialDimensions=2`, `outputUnit=slice`. Categories: glioma, meningioma, pituitary, no_tumor. They are category suggestions, not diagnoses. The no_tumor category does not establish brain health; the publication includes non-neoplastic lesions in this category. Softmax scores are uncalibrated. Argmax is a slice category decision, not an examination-level tumour threshold. No new confidence cutoff has been invented. Overall examination assessment always remains inconclusive; localization and volume measurements are null. No slice aggregation or automatic extraction from the 3D viewer is provided.
+
+`inference-contract.mjs` provides separate task/unit contracts for 3D segmentation, 2D classification and a disabled future 3D tumour-presence adapter. Adding an independently evaluated volumetric classifier can use a new service/worker without replacing the viewer; it must have its own compatible input, evaluation and decision policy. Current tumour-presence/category capabilities in the 3D assessment remain unavailable.
+
+## Bundle required before real inference
+
+Use only a trusted local, appropriately licensed TorchScript checkpoint trained for these classes. No automatic downloading or training occurs. `BRAINLENS_BRISC_BUNDLE` points to the actual D: bundle when using Start-BrainLens.ps1. Without the launcher/environment setting the historical default lookup remains project `work/brisc-classifier/bundle.json`, absent; set the D: bundle explicitly instead of copying checkpoints into it. Existing `work/ml-venv/Scripts/python.exe` has PyTorch, Pillow and NumPy; no torchvision or package installation is required by this adapter.
+
+The directory must contain:
+
+- `classifier.ts`: at most 256 MB, returns four finite logits `[1,4]`, class order `[glioma,meningioma,pituitary,no_tumor]`.
+- `evaluation.json`: schemaVersion 1, dataset BRISC2025, inputUnit slice, exact modelSHA256, sampleCount, heldOut true, patientIndependence (`not_established` or `documented`), methodology and metrics. Its existence/hash is a provenance check, not independent scientific verification; the evidence requires review before deployment.
+- `bundle.json`: schemaVersion 1, modelId brisc-slice-v1, task slice_classification, inputUnit slice, spatialDimensions 2, outputUnit slice, dataset BRISC2025, format torchscript, classes in the order above, weightsFile classifier.ts and its SHA256, evaluationFile evaluation.json and its SHA256, checkpointSource, licence, trainingPreprocessingSource, preprocessing object below.
+
+Supported adapter preprocessing (not a claim about the authors' benchmark models):
+
+```json
+{"id":"rgb224-bilinear-imagenet-v1","width":224,"height":224,"color":"RGB","resize":"bilinear_warp","scale":255,"mean":[0.485,0.456,0.406],"std":[0.229,0.224,0.225]}
+```
+
+A real checkpoint must have documented training preprocessing that matches this exact implementation, including Pillow bilinear resize. A different preprocessing contract needs a separately verified adapter; do not relabel mismatched weights to force acceptance. The worker uses CPU, one thread, evaluation mode and inference_mode. Uploads and runs are sequential, with a two-minute worker timeout. Missing/corrupted artifacts, unsupported images, model-output shape/value errors and failures never yield substitute scores. Model/runtime presence is not clinical validation.
+
+## Persistence and privacy
+
+Each new UUID contains original uploaded bytes (`input-image`), session state, verified result, worker records and bundle/evaluation/runner snapshots. Source filename is not retained. Result records bind input, weights, bundle, evaluation and runner SHA256. Reopen/export rechecks input, result and source-snapshot integrity. Reopening a historical result does not require the currently configured model to remain installed. There is no automatic deletion or overwrite of existing source artifacts. A failed run keeps input/diagnostics and is excluded from completed-result lists. The server keeps the existing localhost/host/origin policy. No image or report is sent to NVIDIA or another external service. Uploads can contain identifying pixels/metadata: use permitted de-identified research images; this adapter is not a de-identification tool.
+
+## Verified workflow and next limit
+
+Four real BRISC inputs, fixed before test inference, produced genuine website predictions matching the frozen offline model within1e-5. All four saved results reopened after an actual application restart. Local browser checks verified mobile width390, all three existing synthetic3D navigation planes, no external image requests and no browser-script errors.74Node tests passed serially,15application Python tests and10prototype fixture tests passed. A repeat under active training had one unchanged20-second worker-test timeout; its failure log remains retained. A first browser inspector-cache failure/partial run also remains retained; the completed checks are website-check-v2. No new3D medical inference or diagnostic validation is claimed.
+
+The bounded local2D prototype is complete. Patient-independent external evaluation and review of dataset/source confounds are needed before stronger claims or wider release. Separate approval is required for additional datasets, checkpoints or training experiments. Future3D tumour detection requires its own suitable volumetric model and independent examination-level cohort. Historical classifier failures and MR-RATE input-readiness limitations remain unchanged. No raw MR-RATE files or weak examination labels were repurposed as BRISC data. The earlier third-party archive discrepancy was not bypassed: this experiment used only the official hash-verified Kaggle release.
+
+## Friendly upload workflow, 12 October 2026
+
+The home page has a prominent **Upload an MRI image** link and explains the separate single-image and 3D routes. The single-image page guides visitors through **Upload → Analyze → Understand the result**, defines a slice, and keeps the contrast-enhanced T1 research-input requirement visible. Selecting a new image clears the old result and confirmation; unsupported files receive a linked error message. The action button explains what remains to be done and shows an analysis state while running. Result focus moves to the category heading for keyboard and screen-reader navigation.
+
+The category suggestion and plain-language limits remain prominent. Technical model scores and provenance are available in expandable details. Save/export/reopen routes, stored JSON, trained weights, class order, preprocessing and decision rule are unchanged. No new analysis capability, diagnosis, healthy-brain claim or tumour outline is introduced. The existing 3D viewer and 96³ inference configuration remain intact.
+
+## Clearer results and separate outline step, 12 October 2026
+
+The page names a positive result as **Suggested tumour category: Glioma, Meningioma or Pituitary tumour**. This remains an unconfirmed suggestion for one supported slice. A negative category reads **No tumour category suggested in this slice**; it does not certify tumour absence. The result explicitly shows **Whole-brain health: Inconclusive** and **Tumour outline: Unavailable for this 2D result**.
+
+The presentation adapter validates the existing saved record before describing it. It changes neither exported JSON nor the checkpoint, scores, class order, preprocessing or argmax rule. Older verified results can reopen with the clearer text. Failed, unsupported and raw-response stress experiments are not converted into supported results.
+
+The user requested a tumour outline as a separate next step. No 2D segmentation checkpoint or corresponding boundary annotations are configured for this adapter; four classification logits do not supply tumour boundaries. A category score or attention heatmap must not be presented as a segmentation outline. A separate, appropriately trained and evaluated 2D segmentation workflow would need its own mask references, compatible preprocessing and verified source-pixel alignment. Any additional acquisition or training requires separate bounded approval. The current 3D SegResNet workflow and 96³ production configuration remain separate and unchanged.

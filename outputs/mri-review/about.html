@@ -1,0 +1,1314 @@
+<!doctype html>
+
+
+
+
+
+
+
+
+
+<html lang="en">
+
+
+
+
+
+
+
+
+
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="A plain-language guide to the brain MRI research project, its measured results and its limitations."><title>Understand the project · BrainLens</title><link rel="stylesheet" href="/style.css"></head>
+
+
+
+
+
+
+
+
+
+<body>
+
+
+
+
+
+
+
+
+
+<a class="skip-link" href="#project">Skip to the project explanation</a>
+
+
+
+
+
+
+
+
+
+<header><a href="/" class="brand">BrainLens <span>Brain MRI research and review</span></a><span class="badge">Research demo</span></header>
+
+
+
+
+
+
+
+
+
+<main class="about-content" id="project" tabindex="-1">
+
+
+
+
+
+
+
+
+
+ <section class="intro"><p class="eyebrow">New to MRI? Start here.</p><h1>What does this project do?</h1><p>It helps you explore images from a brain MRI examination and inspect regions marked by a research model. It also shows how those markings compare with expert annotations in a public dataset.</p><div class="intro-actions"><a class="button-link" href="/#studyStep">Explore a public example</a><a href="#meningiomaComponentEvidence">Newest training evidence</a></div></section>
+
+
+
+
+
+ <div class="notice"><strong>A marking is not a diagnosis.</strong> The models were developed for glioma-region research. They do not check for every brain condition, and an empty result does not mean a healthy brain. This project has not established clinical reliability.</div>
+
+
+
+
+
+
+
+
+
+ 
+<section class="panel" id="tumourTypeUpgrade">
+<h2>Progress toward recognising tumour types</h2>
+<p>We checked <a href="https://github.com/HKU-HealthAI/BrainVLM/tree/9949221bf8b43b38b2e70c2aea70e8a8f6cd85b3" target="_blank" rel="noopener">BrainVLM, a published specialist research model</a>, as a possible next step. Its authors study several tumour categories. <strong>It has not been installed or tested in BrainLens.</strong> Access to its required trained files and sufficient computing resources are unresolved. Its released tumour-category workflow does not establish that a brain is healthy.</p>
+<p>A larger model is useful only if a separate test supports better results. <a href="https://arxiv.org/abs/2609.16597v4" target="_blank" rel="noopener">The authors' research results</a> belong to their study and are not this website's accuracy. The measured BrainLens errors below remain unchanged.</p>
+</section>
+<section class="panel" id="meningiomaComponentEvidence">
+<p class="eyebrow">Newest completed training experiment · 18 new patient checks · 10 October 2026</p>
+<h2>What did the new meningioma training achieve?</h2>
+<p><strong>Additional imaging training did not improve the new checking result.</strong> The experimental candidate was not adopted for scan analysis.</p>
+<p>We used 45 people for training and kept 18 different people for checking: ten with a meningioma source reference and eight whose source records described both their clinical assessment and MRI as normal. Both methods below used the same scans. The test patients did not fit the model or choose its settings.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Paired results on the same eighteen new patient checks"><table><caption>A narrow reference-label comparison, not clinical accuracy or tumour-type diagnosis.</caption><thead><tr><th scope="col">Result</th><th scope="col">Classifier training only</th><th scope="col">Extra imaging training</th></tr></thead><tbody>
+<tr><th scope="row">Matches on the 18 new patient checks</th><td>12/18</td><td>11/18</td></tr>
+<tr><th scope="row">Meningioma references missed</th><td>5/10</td><td>5/10</td></tr>
+<tr><th scope="row">Source-normal references falsely flagged</th><td>1/8</td><td>2/8</td></tr>
+<tr><th scope="row">Training-only checks outside each person's fitting group</th><td>37/45</td><td>37/45</td></tr>
+</tbody></table></div>
+<p><strong>This experiment does not tell different tumour types apart.</strong> It tests meningioma examples against source-normal references. It has no evidence for distinguishing glioma, metastasis, lymphoma or other abnormalities, or for saying that a brain is healthy. The source labels were already known, and dataset shortcuts and original pretraining overlap remain unverified. Even a perfect score in this small group would not prove clinical reliability.</p>
+<p><strong>A collection-name-only rule also matches all 18 source labels.</strong> The two reference groups come from different public collections. Our models received MRI pixels, but the images can carry collection-specific differences. This is a serious limit on what these results demonstrate about tumour recognition.</p>
+<details><summary>What changed in the model and the scan preparation?</summary><p>The research imaging core has about 88 million parameters. We compared a newly trained small classifier with additional training of about 7.1 million imaging parameters, using the same 45 training people and twenty fixed training passes. Full MRI images were retained, with no hard brain-only mask. Physical 1mm preparation shortened the slow initial attempt. Expert training outlines checked retained signal; they were never prediction inputs. This preprocessing has not been clinically validated.</p></details>
+<details><summary>How was the evidence checked?</summary><p>All 63 scans and 36 source outlines downloaded with verified checksums. All 123 T1 information files were checked. We excluded HC records with abnormal or unmatched source findings rather than calling them healthy. A separate run reconstructed all 63 inputs, made fresh MRI-model runs, and reproduced all twelve saved-fit decisions and their counts. Eighteen test patients remained outside every fit. Computational agreement verifies implementation, not medical correctness.</p></details>
+<p>No experimental classifier was added to the website's scan-analysis workflow. The earlier mixed-condition test still missed six of thirteen tumour references; this new cohort's fractions are not directly comparable with that test.</p>
+<p>Sources: <a href="https://openneuro.org/datasets/ds007345/versions/1.0.2">the public meningioma collection</a> and <a href="https://openneuro.org/datasets/ds005713/versions/1.0.1">the paper-cited related MRI collection</a>. The full diagnostic goal remains unachieved.</p>
+<details id="meningiomaIndividualChecks"><summary>Compare each of the 18 new checks with its source reference</summary>
+<p>These are public research case identifiers. The source label is the publisher's reference; model columns are binary research flags. <strong>No tumour flag does not mean a healthy brain.</strong> These models do not predict a specific tumour type.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Every new checking case, source reference and both model flags"><table><caption>All eighteen checking people; no failed prediction removed.</caption><thead><tr><th scope="col">Public research case</th><th scope="col">Original source reference</th><th scope="col">Classifier training only</th><th scope="col">Extra imaging training</th></tr></thead><tbody><tr><th scope="row">ds007345-sub-olf01</th><td>Meningioma source reference</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf04</th><td>Meningioma source reference</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf10</th><td>Meningioma source reference</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf16</th><td>Meningioma source reference</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf17</th><td>Meningioma source reference</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf18</th><td>Meningioma source reference</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf22</th><td>Meningioma source reference</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf23</th><td>Meningioma source reference</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf30</th><td>Meningioma source reference</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds007345-sub-olf33</th><td>Meningioma source reference</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-03</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-07</th><td>Source: normal clinical assessment and MRI</td><td>Tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-11</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-14</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-24</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>Tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-26</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-30</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr>
+<tr><th scope="row">ds005713-sub-39</th><td>Source: normal clinical assessment and MRI</td><td>No tumour flag</td><td>No tumour flag</td></tr></tbody></table></div></details>
+</section>
+<section class="panel"><h2>Three things you can do</h2><ol><li><strong>Explore an MRI.</strong> A 3D scan is a stack of thin images called slices. The slider lets you move through that stack.</li><li><strong>Run an imaging model.</strong> The model uses four image sets from the same examination. These image sets make tissue appear differently; the public examples provide them for you.</li><li><strong>Inspect the evidence.</strong> Compare candidate model markings with the dataset's expert-drawn regions. The report includes tissue the model missed and markings outside the reference.</li></ol><p>You can also write and export review notes. An optional language AI can draft text from measured region volumes; it does not interpret the scans or improve the imaging model's accuracy.</p></section>
+<section class="panel"><h2>What does the score mean?</h2><p>We use a measure called <strong>Dice overlap</strong>. It compares two marked regions: the model's prediction and the expert annotation. A score of 1 means the regions are identical. A score of 0 means they do not overlap.</p><p><strong>89.66% overlap does not mean 89.66% correct diagnoses.</strong> It measures agreement between shapes, not whether the model correctly identifies a person's disease. Expert annotations are the dataset reference, not a complete record of every medical problem.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Original Swin overlap scores; scroll horizontally if needed"><table><caption>Original Swin UNETR: full-volume overlap on five public glioma studies. These ranges are the lowest and highest observed scores, not confidence intervals.</caption><thead><tr><th scope="col">Marked region</th><th scope="col">Average overlap</th><th scope="col">Observed range</th></tr></thead><tbody><tr><th scope="row">Whole region</th><td>89.66%</td><td>81.52–95.29%</td></tr><tr><th scope="row">Core</th><td>85.25%</td><td>75.71–95.42%</td></tr><tr><th scope="row">Enhancing region</th><td>81.35%</td><td>71.05–91.61%</td></tr></tbody></table></div><p>The region categories are nested: core is inside the whole region, and enhancing is inside core. Their volumes must not be added together.</p></section>
+<section class="panel"><h2>What remains unproven?</h2><ul><li>Five studies are a small development comparison. Overlap with the original pretrained models' training data is unknown.</li><li>The examples contain gliomas. We have not measured false alarms on healthy brains or performance across other conditions.</li><li>We have not established clinical accuracy, calibrated uncertainty, regulatory approval or patient benefit.</li><li>The website currently reviews one examination. Comparing earlier and later examinations is future work.</li><li>Matching image headers does not prove actual anatomical alignment, sequence identity or patient identity.</li></ul></section>
+<section class="panel"><h2>A few MRI words, explained</h2><details><summary>MRI study, image set and slice</summary><p>A study is the collection of images from one examination. An image set uses one acquisition technique. A slice is one thin section through the scan.</p></details><details><summary>T1, T1 with contrast, T2 and FLAIR</summary><p>These are different ways of acquiring MRI images so tissue appears differently. T1 with contrast is acquired after a contrast agent. FLAIR suppresses much of the free-fluid signal. The model uses the four techniques together; their names do not tell you whether a finding is disease.</p></details><details><summary>Segmentation</summary><p>Segmentation means marking a region in an image. It does not, by itself, establish a medical diagnosis.</p></details><details><summary>NIfTI and DICOM</summary><p>NIfTI (.nii or .nii.gz) is a research format that stores an image stack and its recorded positions. DICOM is commonly used by hospitals. This app currently supports prepared NIfTI data.</p></details></section>
+<section class="panel"><h2>Public data and model credits</h2><p>Public images and expert annotations: Medical Segmentation Decathlon Task01 / BraTS contributors, CC BY-SA 4.0. The comparison figures add model overlays and error markings. Imaging models and implementations: MONAI contributors; model/code attribution is recorded with the weights.</p><p><a href="https://www.nature.com/articles/s41467-022-30695-9">Dataset paper</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">Public dataset license</a> · <a href="https://huggingface.co/MONAI/brats_mri_segmentation">SegResNet model</a> · <a href="https://github.com/Project-MONAI/research-contributions/tree/main/SwinUNETR/BRATS21">Swin UNETR implementation</a></p><p><a href="/upgrade-evaluation/">Read the full comparison, including every decrease and the experiment limitations.</a></p></section>
+<details class="panel" id="earlierResearchEvidence"><summary>Earlier research checks and full evidence history</summary>
+<section class="panel" id="externalPresenceChallengeEvidence">
+<p class="eyebrow">Earlier mixed-condition evidence · 20 scans from another public collection · 10 October 2026</p>
+<h2>How did the models respond to a different MRI collection?</h2>
+<p>We tested both frozen models on all twenty original people: thirteen tumour labels, two control labels and five labels for other brain abnormalities. These scans were not used to fit our two models. Their original pretraining overlap is unknown, and the source labels were already known before this assessment.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Both frozen models on all twenty external-source scans"><table><caption>Tumour-presence label comparisons, not tumour-type diagnoses or clinical accuracy.</caption><thead><tr><th scope="col">Result</th><th scope="col">Previous trained model</th><th scope="col">Model trained with outlines</th></tr></thead><tbody>
+<tr><th scope="row">Scans successfully processed</th><td>20/20</td><td>20/20</td></tr>
+<tr><th scope="row">Matches with tumour-presence labels</th><td>11/20</td><td>12/20</td></tr>
+<tr><th scope="row">Tumour-labelled cases missed</th><td>6/13</td><td>6/13</td></tr>
+<tr><th scope="row">Source controls falsely flagged</th><td>1/2</td><td>0/2</td></tr>
+<tr><th scope="row">Other abnormalities falsely flagged as tumour</th><td>2/5</td><td>2/5</td></tr>
+</tbody></table></div>
+<p><strong>The newer model corrected one control false flag, but still missed six tumour labels.</strong> Both models also falsely flagged two of five other abnormalities. These results do not establish reliable tumour identification. Neither experimental classifier is installed in the website's scan-analysis workflow.</p>
+<details><summary>Why is a no-tumour flag not a healthy-brain result?</summary><p>The source includes multiple sclerosis, infarction, heterotopia and abscess labels. Three of these five abnormality cases received no tumour flag from each model. A tumour-presence flag does not assess or name every brain condition. Exact tumour type and overall brain health remain unvalidated.</p></details>
+<details><summary>What makes this comparison checkable?</summary><p>Both model versions and their 0.5 thresholds were fixed before MRI acquisition. Two original network input failures were preserved and then recovered using the same publisher versions and checksums, before prediction. All twenty scans received the same preparation. Fresh MRI runs and separate calculations reproduced all forty presence scores and all 4,320 new-model location scores exactly. No training or best-version selection used these scans. Computation checks do not establish clinical reliability.</p></details>
+<p>A constant tumour flag using no MRI would match 13/20 source labels while wrongly flagging every control and every other-abnormality case. This shows why a single percentage can hide serious errors.</p>
+<p>Source: <a href="https://openneuro.org/datasets/ds004910/versions/1.0.1">the public neurosurgical MRI collection, ds004910:1.0.1</a>, CC0. The full diagnostic goal remains unachieved.</p>
+</section>
+<section class="panel" id="withinSourcePresenceEvidence">
+<p class="eyebrow">Earlier tumour-presence experiment · 10 October 2026</p>
+<h2>Did teaching the model where tumours are help?</h2>
+<p>We added training with expert tumour outlines to the previous 3D imaging model. We used the same 29 people from one public collection: 22 for training and the same seven previously inspected people for checking.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="All tumour-presence approaches on the same evaluation people"><table><caption>Matches with publisher labels. These reused research scans do not establish clinical accuracy.</caption><thead><tr><th scope="col">Evaluation group</th><th scope="col">Frozen imaging model</th><th scope="col">Previous extra imaging training</th><th scope="col">New training with tumour outlines</th><th scope="col">Always flag tumour, no MRI</th></tr></thead><tbody>
+<tr><th scope="row">Development checks outside each person's training fold</th><td>8/22</td><td>9/22</td><td>9/22</td><td>15/22</td></tr>
+<tr><th scope="row">Previously inspected checking scans</th><td>5/7</td><td>6/7</td><td>6/7</td><td>5/7</td></tr>
+</tbody></table></div>
+<p><strong>The new training changed none of the 29 tumour-presence decisions.</strong> Both trained candidates missed six of fifteen development tumour labels and falsely flagged all seven development controls. Each missed one of five checking tumour labels and falsely flagged neither of the two checking controls. The new candidate failed the fixed reliability criteria.</p>
+<p><strong>Location marking was also weak.</strong> Fourteen of fifteen positive development outlines had zero overlap with the new model's flagged coarse patches. Its average coarse-patch Dice was 0.0353. This measures agreement across large image blocks; it is not voxel outline accuracy or a diagnosis.</p>
+<p><strong>Six matches out of seven is not a clinical accuracy claim.</strong> Those scans were already inspected in earlier work, and the development results were much weaker. These unsuccessful candidates remain outside the website's scan-analysis workflow.</p>
+<details><summary>What changed in the imaging model?</summary><p>The published BrainIAC foundation has about 88 million parameters. The previous candidate trained about 7.1 million parameters in its final imaging layer and presence head. The new candidate added location supervision from fifteen expert training outlines and seven publisher no-tumour labels, then completed six fits and 620 updates over twenty fixed training passes. All patient splits, seeds and the presence threshold stayed fixed. The earlier matched frozen head and all earlier results remain recorded.</p></details>
+<details><summary>Were the images and results checked?</summary><p>The previous experiment independently reproduced all 29 prepared MRI inputs and token caches. This experiment reused those checked representations. A separate implementation reconstructed the location targets and reproduced all 29 presence scores and 6,264 location scores exactly. Expert outlines were never supplied as prediction inputs. Reproducible calculations do not establish medical reliability.</p></details>
+<details><summary>Can this identify a tumour type or say the brain is healthy?</summary><p>This experiment predicts a limited tumour-present flag. Exact tumour type and overall brain health have not been validated. A publisher no-tumour label does not mean every brain condition was checked. A no-flag output cannot certify a healthy brain. The full diagnostic goal remains unachieved.</p></details>
+<p>Sources: <a href="https://github.com/AIM-KannLab/BrainIAC">BrainIAC</a>, under its academic research licence, and <a href="https://openneuro.org/datasets/ds001226/versions/5.0.1">the public BTC collection</a>.</p>
+</section>
+<section class="panel" id="multisourceTrainingEvidence">
+<p class="eyebrow">Earlier tumour-family learning experiment · 10 October 2026</p>
+<h2>Can learning where to look improve tumour-family results?</h2>
+<p>We trained an additional model to predict where to focus in the MRI, using available expert outlines during training. Each held-out prediction receives the images alone. We retained the same 61 public studies and training budget.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="All research approaches on the same 61 development people"><table><caption>Source-label agreement in reused research data; this is not clinical accuracy.</caption><thead><tr><th scope="col">Research approach</th><th scope="col">Family matches</th><th scope="col">Metastasis matches</th><th scope="col">Glioma matches</th></tr></thead><tbody>
+<tr><th scope="row">Earlier first-position control</th><td>35/61</td><td>17/32</td><td>18/29</td></tr>
+<tr><th scope="row">Matched whole-image control</th><td>33/61</td><td>17/32</td><td>16/29</td></tr>
+<tr><th scope="row">MRI-predicted regional focus</th><td>34/61</td><td>18/32</td><td>16/29</td></tr>
+</tbody></table></div>
+<p><strong>The regional candidate failed the fixed internal development criteria.</strong> It corrected 1 previous errors and introduced 0 new errors. The experimental classifier remains separate from the website's scan-analysis workflow.</p>
+<p><strong>This does not establish a reliable tumour type or a healthy brain.</strong> The experiment contains two broad tumour families and no healthy class. The people were already used for development, the collections differ, and overlap with original model training remains unverified.</p>
+<details><summary>Did the image resize erase the expert outlines?</summary><p>All 92 complete outlines still had samples on the actual model-input grid. Twelve tiny outline pieces across eight people were unsampled. These pieces are not confirmed separate tumours. We independently replayed all 204 normalized image inputs and all sampled outline grids; this verifies processing, not medical recognition. Ten people without outlines remain recorded.</p></details>
+<details><summary>Did the predicted focus match the expert outlines?</summary><p>The mean overlap score on the coarse image patches was <strong>0.358</strong>. These patches are much larger than individual MRI pixels. This is a limited spatial-agreement measure, not diagnostic accuracy and not directly comparable to the website's detailed outline scores. The model's predicted focus remains unreliable.</p></details>
+<details><summary>What happened within one collection and on the additional checks?</summary><p>Within MOTUM, the regional candidate matched <strong>17/41</strong>, versus <strong>16/41</strong> for the matched whole-image control. A source-only baseline used no MRI and matched <strong>42/61</strong> across the full pool. This exposes collection differences as a possible shortcut.</p><p>The same eleven previously inspected people were excluded from training. All five saved versions are shown; no winner was selected.</p><div class="table-scroll" tabindex="0" role="region" aria-label="All saved versions on the same eleven known checking people"><table><caption>Five versions; eleven distinct people.</caption><thead><tr><th scope="col">Version</th><th scope="col">Matched control</th><th scope="col">Regional candidate</th></tr></thead><tbody>
+<tr><th scope="row">1</th><td>3/11</td><td>3/11</td></tr>
+<tr><th scope="row">2</th><td>7/11</td><td>6/11</td></tr>
+<tr><th scope="row">3</th><td>5/11</td><td>5/11</td></tr>
+<tr><th scope="row">4</th><td>3/11</td><td>3/11</td></tr>
+<tr><th scope="row">5</th><td>5/11</td><td>4/11</td></tr>
+</tbody></table></div></details>
+<details><summary>How were the new results checked?</summary><p>All five fits completed 315 updates. A separate calculation reproduced every held-out family and coarse spatial prediction, reconstructed every annotation target, and checked training exclusions, changed weights and the fixed pass criteria. Original source weights remained unchanged. These are computation checks, not clinical validation.</p></details>
+<p>Source model: <a href="https://github.com/AIM-KannLab/BrainIAC" target="_blank" rel="noopener noreferrer">BrainIAC</a>, used under its academic research licence. <a href="#newSourceCohortEvidence">See the earlier twenty-person comparison</a>.</p>
+</section>
+<section class="panel" id="newSourceCohortEvidence">
+<p class="eyebrow">Larger public-data check · 10 October 2026</p>
+<h2>Tumour-family predictions remain unreliable</h2>
+<p>We compared twenty public MRI studies: ten with a recorded brain metastasis and ten with a recorded high-grade glioma. Both approaches were tested in all five saved model versions, using the same patients and decision threshold. The earlier approach matched <strong>4–11 of 20</strong> source-family labels; the trained approach matched <strong>5–11 of 20</strong>.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="All five model versions on the same twenty public MRI studies"><table><caption>Twenty people tested in every version; these are development results, not medical accuracy.</caption><thead><tr><th scope="col">Version</th><th scope="col">Earlier matches</th><th scope="col">Trained matches</th><th scope="col">Trained metastasis matches</th><th scope="col">Trained glioma matches</th></tr></thead><tbody><tr><th scope="row">1</th><td>7/20</td><td>11/20</td><td>9/10</td><td>2/10</td></tr><tr><th scope="row">2</th><td>9/20</td><td>9/20</td><td>8/10</td><td>1/10</td></tr><tr><th scope="row">3</th><td>11/20</td><td>11/20</td><td>10/10</td><td>1/10</td></tr><tr><th scope="row">4</th><td>4/20</td><td>5/20</td><td>5/10</td><td>0/10</td></tr><tr><th scope="row">5</th><td>8/20</td><td>9/20</td><td>9/10</td><td>0/10</td></tr></tbody></table></div>
+<p><strong>The trained model failed the criteria set for this comparison.</strong> It frequently called the glioma cases metastasis, and its confident mistakes became worse. The experimental family classifier remains outside the website's scan-analysis workflow.</p>
+<p>The two families came from different collections, and some scans had been used in earlier development checks. Overlap with the imaging model's original training data remains unverified. These results cannot establish clinical accuracy, exact tumour type, or a healthy brain. No healthy control group was added.</p>
+<details><summary>What did the verification establish?</summary><p>All twenty studies passed the original-file and 3D geometry checks. A separate calculation replay reproduced all 200 scores. Forty checks on expert-marked metastasis regions confirmed that image registration retained the available signal. Those checks verify data and calculations; they do not prove reliable tumour identification or visibility after the model resizes the images. No new weights were trained during this comparison, no failed case was removed, and no preferred model version was selected.</p></details>
+<p>Data attribution: Ramakrishnan and colleagues, <a href="https://www.cancerimagingarchive.net/collection/pretreat-metstobrain-masks/" target="_blank" rel="noopener noreferrer">Pretreat-MetsToBrain-Masks</a>; Calabrese and colleagues, <a href="https://www.cancerimagingarchive.net/collection/ucsf-pdgm/" target="_blank" rel="noopener noreferrer">UCSF-PDGM</a>. Both sources use CC BY 4.0. <a href="#newSourceEvidence">See the earlier single-patient result</a>.</p>
+</section>
+<section class="panel" id="newSourceEvidence">
+<p class="eyebrow">Earlier single-patient comparison · 10 October 2026</p>
+<h2>Did the model match a new patient's reference?</h2>
+<p>We downloaded one public brain MRI study with all four required image types and an expert outline. The original files passed the collection's checksum and image-format checks. Both model approaches matched its recorded <strong>brain metastasis</strong> family.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="New public patient's reference and model comparison"><table><caption>One patient, compared with five saved versions of each model approach.</caption><thead><tr><th scope="col">Original reference</th><th scope="col">Earlier model</th><th scope="col">Trained model</th></tr></thead><tbody><tr><th scope="row">Brain metastasis</th><td>Brain metastasis in all five versions</td><td>Brain metastasis in all five versions</td></tr></tbody></table></div>
+<p><strong>This is one matching patient, not a general accuracy score.</strong> Training did not improve the family decision on this case. The model did not identify the primary cancer origin. Its scores have not been validated as diagnostic confidence, and it has no validated healthy-brain or exact tumour-subtype output.</p>
+<p>A separate calculation check reproduced all ten predictions. This verifies the calculations, not the medical correctness of the model. Overlap with the imaging model's original training data remains unverified. The experimental family classifier remains outside the website's scan-analysis workflow.</p>
+<p>Public case: <span>BraTS-MET-00086-000</span>. Source: Ramakrishnan and colleagues, <a href="https://www.cancerimagingarchive.net/collection/pretreat-metstobrain-masks/" target="_blank" rel="noopener noreferrer">Pretreat-MetsToBrain-Masks, The Cancer Imaging Archive</a> (CC BY 4.0). <a href="#imagingWeightEvidence">See the broader results, including incorrect predictions</a>.</p>
+</section>
+<section class="panel" id="imagingWeightEvidence">
+<h2>Earlier 41-person training: more matches, but still unreliable</h2>
+<p>We trained part of a published 3D MRI model using T1, T1 with contrast, T2 and FLAIR. The new configuration matched <strong>24 / 41</strong> recorded broad tumour-family labels, compared with <strong>20 / 41</strong> for the same features with a frozen imaging model. It completed <strong>860 learning updates</strong> across five fits.</p>
+<p><strong>The trained candidate failed the criteria set before the experiment.</strong> It made 17 wrong family predictions and its scores became worse under a measure that penalizes confident mistakes. It has not been added to the website’s scan-analysis workflow.</p>
+<div class="table-scroll" tabindex="0" role="region" aria-label="Same-person imaging-weight training comparison"><table><caption>Internal validation of the same 41 people. These are research label matches, not accuracy on new patient uploads.</caption><thead><tr><th scope="col">Approach</th><th scope="col">Source family matches</th></tr></thead><tbody><tr><th scope="row">Frozen imaging features; trained classifier</th><td>20 / 41</td></tr><tr><th scope="row">Imaging block and classifier trained</th><td>24 / 41</td></tr><tr><th scope="row">Most common training family, without MRI images</th><td>22 / 41</td></tr></tbody></table></div>
+<p>Each validation person was excluded from the fit that predicted their label. We verified all five saved models, the actual imaging-weight changes and every prediction using a separately coded calculation. Those checks confirm the experiment ran consistently; they do not establish medical reliability.</p>
+<details><summary>Compare all 41 people with their recorded source category</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All 41 imaging-weight training comparisons"><table><caption>Both source categories already contain tumours. This experiment cannot assess healthy brains or give an exact tumour subtype.</caption><thead><tr><th scope="col">Public research case</th><th scope="col">Source reference family</th><th scope="col">Frozen imaging features</th><th scope="col">Trained imaging block</th></tr></thead><tbody><tr data-adaptation-case="sub-0001"><th scope="row">sub-0001</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0003"><th scope="row">sub-0003</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0004"><th scope="row">sub-0004</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0006"><th scope="row">sub-0006</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0008"><th scope="row">sub-0008</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0010"><th scope="row">sub-0010</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0011"><th scope="row">sub-0011</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0012"><th scope="row">sub-0012</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0013"><th scope="row">sub-0013</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0015"><th scope="row">sub-0015</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0017"><th scope="row">sub-0017</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0018"><th scope="row">sub-0018</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0019"><th scope="row">sub-0019</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0020"><th scope="row">sub-0020</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0021"><th scope="row">sub-0021</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0022"><th scope="row">sub-0022</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0024"><th scope="row">sub-0024</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0027"><th scope="row">sub-0027</th><td>High-grade glioma source family</td><td>High-grade glioma source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0028"><th scope="row">sub-0028</th><td>High-grade glioma source family</td><td>Brain metastasis source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0034"><th scope="row">sub-0034</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0035"><th scope="row">sub-0035</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0036"><th scope="row">sub-0036</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0037"><th scope="row">sub-0037</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0039"><th scope="row">sub-0039</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0040"><th scope="row">sub-0040</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0043"><th scope="row">sub-0043</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0046"><th scope="row">sub-0046</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0047"><th scope="row">sub-0047</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0048"><th scope="row">sub-0048</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0050"><th scope="row">sub-0050</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0051"><th scope="row">sub-0051</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0052"><th scope="row">sub-0052</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0053"><th scope="row">sub-0053</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0055"><th scope="row">sub-0055</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0056"><th scope="row">sub-0056</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0057"><th scope="row">sub-0057</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0060"><th scope="row">sub-0060</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0061"><th scope="row">sub-0061</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr><tr data-adaptation-case="sub-0063"><th scope="row">sub-0063</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0066"><th scope="row">sub-0066</th><td>Brain metastasis source family</td><td>High-grade glioma source family<br><small>Differs from reference</small></td><td>Brain metastasis source family<br><small>Matches reference</small></td></tr><tr data-adaptation-case="sub-0067"><th scope="row">sub-0067</th><td>Brain metastasis source family</td><td>Brain metastasis source family<br><small>Matches reference</small></td><td>High-grade glioma source family<br><small>Differs from reference</small></td></tr></tbody></table></div></details>
+<p>The source categories are high-grade glioma and brain metastasis. They are broad families rather than exact tumour diagnoses. The available data contain no healthy-brain category. New independent data and qualified clinical validation remain necessary before broader claims.</p>
+</section>
+<section class="panel" id="brainiacFamilyEvidence">
+
+
+<h2>Earlier four-view check: the new model performed worse</h2>
+<p>We tested a published model for 3D MRI images and trained a small classifier on 41 public research cases. It uses four actual MRI views: T1 for structural detail, T1 with contrast, T2, and FLAIR. T2 and FLAIR emphasize different signals related to fluid. These are different ways of capturing MRI images, and they can provide information that is missing from a single view.</p>
+
+
+<p>On the same 11 previously inspected checking cases, the new experiment matched <strong>4 / 11</strong> recorded tumour-family labels. Both earlier 2D versions matched <strong>7 / 11</strong>. <strong>This is a small development comparison; it does not establish clinical accuracy.</strong></p>
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Same11 tumour-family comparison"><table><caption>Every case had a tumour recorded in the source. This experiment has no healthy-brain category.</caption><thead><tr><th scope="col">Research method</th><th scope="col">Source family matches</th></tr></thead><tbody><tr><th scope="row">Earlier 2D model V3</th><td>7 / 11</td></tr><tr><th scope="row">Earlier 2D model V4</th><td>7 / 11</td></tr><tr><th scope="row">New four-view 3D experiment</th><td>4 / 11</td></tr></tbody></table></div>
+
+
+<p>The new candidate <strong>failed</strong> its predefined family-comparison rule. High-grade glioma is a broad family of brain tumours; brain metastasis refers to cancer that has spread to the brain. These are source research categories, not diagnoses of an uploaded scan.</p>
+
+
+<details><summary>Compare all 11 predictions with the original labels</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All 11 source-versus-predicted family labels"><table><caption>All matches and mismatches retained; no scan was removed to improve the result.</caption><thead><tr><th scope="col">Public case</th><th scope="col">Recorded source family</th><th scope="col">Earlier V3</th><th scope="col">Earlier V4</th><th scope="col">New four-view experiment</th></tr></thead><tbody><tr data-family-case="sub-0002"><th scope="row">sub-0002</th><td>High-grade glioma family</td><td>Brain metastasis family</td><td>Brain metastasis family</td><td>Brain metastasis family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0007"><th scope="row">sub-0007</th><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family<br><small>Matches reference</small></td></tr><tr data-family-case="sub-0014"><th scope="row">sub-0014</th><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family<br><small>Matches reference</small></td></tr><tr data-family-case="sub-0025"><th scope="row">sub-0025</th><td>High-grade glioma family</td><td>High-grade glioma family</td><td>Brain metastasis family</td><td>Brain metastasis family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0026"><th scope="row">sub-0026</th><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family<br><small>Matches reference</small></td></tr><tr data-family-case="sub-0038"><th scope="row">sub-0038</th><td>Brain metastasis family</td><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0042"><th scope="row">sub-0042</th><td>Brain metastasis family</td><td>High-grade glioma family</td><td>High-grade glioma family</td><td>High-grade glioma family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0044"><th scope="row">sub-0044</th><td>Brain metastasis family</td><td>Brain metastasis family</td><td>Brain metastasis family</td><td>High-grade glioma family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0045"><th scope="row">sub-0045</th><td>Brain metastasis family</td><td>High-grade glioma family</td><td>Brain metastasis family</td><td>Brain metastasis family<br><small>Matches reference</small></td></tr><tr data-family-case="sub-0054"><th scope="row">sub-0054</th><td>Brain metastasis family</td><td>Brain metastasis family</td><td>Brain metastasis family</td><td>High-grade glioma family<br><small>Differs from reference</small></td></tr><tr data-family-case="sub-0064"><th scope="row">sub-0064</th><td>Brain metastasis family</td><td>Brain metastasis family</td><td>Brain metastasis family</td><td>High-grade glioma family<br><small>Differs from reference</small></td></tr></tbody></table></div></details>
+
+
+<details><summary>Why use all four MRI views?</summary><p>In one training scan, roughly half of the locations outlined using FLAIR or contrast images had no signal in the original T1 image. The corresponding FLAIR and contrast images contained signal at those locations. Adding a larger model cannot recreate missing input information.</p><p>A second brain-extraction step also removed part of the marked regions. We preserved the full aligned scans instead. All 82 matching training-region checks preserved100% of their originally available nonzero signal. A separate calculation replayed every voxel in 12 pilot images, and repeated model runs reproduced each feature vector. These checks verify preparation and calculation; they do not prove tumour recognition.</p><p>One public FLAIR training image already had zero signal at about 4% of its outline locations. The first absolute-coverage rule was met by 81 of 82 regions. Before training or seeing new checking results, we separated that source-quality warning from the requirement to preserve existing signal. The 99% preservation minimum stayed fixed, the source warning remains recorded, and that case stayed in training.</p></details>
+
+
+<p><strong>The website's scan-analysis model has not been replaced by this experiment.</strong> The result does not establish exact tumour subtype, a healthy brain, or every brain condition. Independent data and qualified clinical review are still needed. BrainIAC is used here under its academic research licence.</p>
+
+
+<p>Research sources: <a href="https://doi.org/10.1038/s41597-024-03634-0" target="_blank" rel="noopener noreferrer">MOTUM dataset study</a> · <a href="https://www.nature.com/articles/s41593-026-02202-6" target="_blank" rel="noopener noreferrer">BrainIAC study</a> · <a href="https://github.com/AIM-KannLab/BrainIAC/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Model licence</a></p>
+
+
+</section>
+<section class="panel" id="cropOnlyPresenceEvidence">
+
+
+
+<h2>Earlier check: revised scan preparation and tumour flags</h2>
+
+
+
+<p>We repaired a preparation step that could remove part of an annotated tumour region. The revised method keeps every original image value inside the same brain-based crop. All 90 prepared scans passed a separate replay check, and all 97 annotated training-region checks met the 99% preservation requirement. <strong>These checks measure input preservation, not tumour-detection accuracy.</strong></p>
+
+
+
+<p>On the same 20 previously inspected checking scans, the revised 70-participant classifier matched <strong>15 / 20</strong> recorded labels and missed <strong>5 / 16</strong> tumour-labelled cases. The controlled version trained on 22 participants from one source matched <strong>15 / 20</strong> and missed <strong>3 / 16</strong>.</p>
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Revised preparation and controlled training comparison"><table><caption>All 20 known development cases retained. These counts are not an estimate of clinical accuracy.</caption><thead><tr><th scope="col">Research method</th><th scope="col">Source-label matches</th><th scope="col">Missed tumour-labelled cases</th><th scope="col">False tumour flags</th></tr></thead><tbody><tr><th scope="row">Previous whole-image preparation</th><td>15 / 20</td><td>5 / 16</td><td>0 / 4</td></tr><tr><th scope="row">Revised crop; 70 training participants</th><td>15 / 20</td><td>5 / 16</td><td>0 / 4</td></tr><tr><th scope="row">Revised crop; 22 same-source training participants</th><td>15 / 20</td><td>3 / 16</td><td>2 / 4</td></tr></tbody></table></div>
+
+
+
+<p><strong>Both revised candidates failed the predefined development rule. They were not installed as the website imaging model.</strong> A rule using only the dataset name matched 18 / 20 without reading an MRI. Differences between datasets can influence these results.</p>
+
+
+
+<details><summary>Compare every scan with its recorded reference</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All20 revised MRI reference comparisons"><table><caption>Every match and mismatch is shown. “No tumour flagged” does not establish a healthy brain. Two reference-negative scans have only volunteer recruitment labels.</caption><thead><tr><th scope="col">Public case</th><th scope="col">Source reference</th><th scope="col">Previous preparation</th><th scope="col">Revised crop: 70 training</th><th scope="col">Revised crop: 22 same-source training</th></tr></thead><tbody><tr data-case="BTC-sub-CON06"><th scope="row">BTC-sub-CON06</th><td>No tumour listed in source metadata</td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Differs from reference</small></td></tr><tr data-case="BTC-sub-CON09"><th scope="row">BTC-sub-CON09</th><td>No tumour listed in source metadata</td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Differs from reference</small></td></tr><tr data-case="BTC-sub-PAT01"><th scope="row">BTC-sub-PAT01</th><td>Tumour recorded</td><td>No tumour flagged<br><small>Differs from reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="BTC-sub-PAT10"><th scope="row">BTC-sub-PAT10</th><td>Tumour recorded</td><td>No tumour flagged<br><small>Differs from reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="BTC-sub-PAT24"><th scope="row">BTC-sub-PAT24</th><td>Tumour recorded</td><td>No tumour flagged<br><small>Differs from reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="BTC-sub-PAT29"><th scope="row">BTC-sub-PAT29</th><td>Tumour recorded</td><td>No tumour flagged<br><small>Differs from reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="BTC-sub-PAT31"><th scope="row">BTC-sub-PAT31</th><td>Tumour recorded</td><td>No tumour flagged<br><small>Differs from reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0002"><th scope="row">MOTUM-sub-0002</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0007"><th scope="row">MOTUM-sub-0007</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0014"><th scope="row">MOTUM-sub-0014</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0025"><th scope="row">MOTUM-sub-0025</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0026"><th scope="row">MOTUM-sub-0026</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0038"><th scope="row">MOTUM-sub-0038</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td></tr><tr data-case="MOTUM-sub-0042"><th scope="row">MOTUM-sub-0042</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td></tr><tr data-case="MOTUM-sub-0044"><th scope="row">MOTUM-sub-0044</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Differs from reference</small></td></tr><tr data-case="MOTUM-sub-0045"><th scope="row">MOTUM-sub-0045</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0054"><th scope="row">MOTUM-sub-0054</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="MOTUM-sub-0064"><th scope="row">MOTUM-sub-0064</th><td>Tumour recorded</td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td><td>Tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="LUMC3T-sub-0066"><th scope="row">LUMC3T-sub-0066</th><td>Volunteer recruitment label; weaker evidence</td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td></tr><tr data-case="LUMC3T-sub-0025"><th scope="row">LUMC3T-sub-0025</th><td>Volunteer recruitment label; weaker evidence</td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td><td>No tumour flagged<br><small>Matches reference</small></td></tr></tbody></table></div></details>
+
+
+
+<details><summary>What changed, and what was actually trained?</summary><p>The published image-feature extractor kept its weights. Only a small tumour-flag decision layer was fitted. The 70-participant method used all available training participants; the 22-participant comparison used one source containing both recorded tumour and negative labels. Both used the same revised images, training-only selection and fixed decision threshold.</p><p>The first masked preparation passed 94 of 97 region checks. In one training scan it kept only about half of an annotated region, so no detector was trained on that version. Keeping all original pixels inside the crop repaired that loss. A separate image-edge rounding discrepancy in the verifier was also repaired; the MRI inputs and strict tolerances stayed unchanged. Original failures remain documented.</p><p>All 90 image-feature vectors were recomputed, and a different calculation method reproduced selection and every checking decision for both heads. These checks verify the calculation. They do not confirm tumour biology or clinical correctness.</p></details>
+
+
+
+<p>The 20 checking cases were already seen during development. Sources differ in scanners, preparation and labels, and overlap with published-model training data remains unresolved. Three assigned training scans remain unavailable, and 21 reserved participants remain outside this experiment. The research does not establish tumour type, every brain condition, or a healthy-brain result.</p>
+
+
+
+</section>
+<section class="panel" id="multisourcePresenceEvidence">
+
+
+
+
+<h2>Earlier experiment: more scans did not improve tumour detection</h2>
+
+
+
+
+<p>A separate research classifier was trained using MRI scans from 70 participants, then checked against the recorded labels for all 20 planned checking participants. It matched 15 / 20 labels, but <strong>missed 5 of the 16 tumour-labelled cases</strong>. It made no tumour flags on the four reference-negative cases; two of those negatives are only healthy-volunteer recruitment labels.</p>
+
+
+
+
+<p><strong>This candidate failed its research checks and was not installed.</strong> Its 75% overall label match is not established medical accuracy. A rule using only the dataset name, without looking at any MRI, matched 18 / 20. This warns that differences between datasets can be mistaken for differences between tumour and control scans.</p>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Tumour detection checking results by public dataset"><table><caption>All 20 checking outcomes. These are development checks, not independent clinical validation.</caption><thead><tr><th scope="col">Public dataset</th><th scope="col">Label matches</th><th scope="col">Missed tumour-labelled cases</th><th scope="col">False tumour flags</th></tr></thead><tbody>
+
+
+
+
+<tr><th scope="row">BTC: tumour and source-negative scans</th><td>2 / 7</td><td>5 / 5</td><td>0 / 2 source negatives</td></tr>
+
+
+
+
+<tr><th scope="row">MOTUM: all tumour scans</th><td>11 / 11</td><td>0 / 11</td><td>Not measurable: no source negatives</td></tr>
+
+
+
+
+<tr><th scope="row">LUMC 3T: volunteer scans</th><td>2 / 2</td><td>Not measurable: no tumour-labelled cases</td><td>0 / 2 weaker negative labels</td></tr>
+
+
+
+
+</tbody></table></div>
+
+
+
+
+<p>On exactly the same seven BTC scans, the earlier frozen-encoder classifier matched 4 / 7 labels; this larger-data version matched 2 / 7 and missed every tumour-labelled case. More data alone did not solve the problem in this experiment.</p>
+
+
+
+
+<details><summary>See every reference and research prediction</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All 20 research tumour-presence comparisons"><table><caption>“No tumour flagged” cannot establish a healthy brain. The model scores are not calibrated diagnostic probabilities.</caption><thead><tr><th scope="col">Public case</th><th scope="col">Source reference</th><th scope="col">Research prediction</th><th scope="col">Matches reference</th></tr></thead><tbody><tr><th scope="row">BTC-sub-CON06</th><td>No tumour listed in source metadata</td><td>No tumour flagged</td><td>Yes</td></tr><tr><th scope="row">BTC-sub-CON09</th><td>No tumour listed in source metadata</td><td>No tumour flagged</td><td>Yes</td></tr><tr><th scope="row">BTC-sub-PAT01</th><td>Tumour recorded</td><td>No tumour flagged</td><td>No</td></tr><tr><th scope="row">BTC-sub-PAT10</th><td>Tumour recorded</td><td>No tumour flagged</td><td>No</td></tr><tr><th scope="row">BTC-sub-PAT24</th><td>Tumour recorded</td><td>No tumour flagged</td><td>No</td></tr><tr><th scope="row">BTC-sub-PAT29</th><td>Tumour recorded</td><td>No tumour flagged</td><td>No</td></tr><tr><th scope="row">BTC-sub-PAT31</th><td>Tumour recorded</td><td>No tumour flagged</td><td>No</td></tr><tr><th scope="row">MOTUM-sub-0002</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0007</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0014</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0025</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0026</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0038</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0042</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0044</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0045</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0054</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">MOTUM-sub-0064</th><td>Tumour recorded</td><td>Tumour flagged</td><td>Yes</td></tr><tr><th scope="row">LUMC3T-sub-0066</th><td>Healthy-volunteer recruitment label (weaker evidence)</td><td>No tumour flagged</td><td>Yes</td></tr><tr><th scope="row">LUMC3T-sub-0025</th><td>Healthy-volunteer recruitment label (weaker evidence)</td><td>No tumour flagged</td><td>Yes</td></tr></tbody></table></div></details>
+
+
+
+
+<details><summary>What was trained and checked?</summary><p>The image-feature extractor kept its published weights. Only a new tumour-presence decision layer was trained. All 90 development MRI scans used the same whole-image preparation, without tumour outlines guiding the image preparation. Training cases alone selected the regularization setting; checking predictions were saved before scoring. An independent calculation method reproduced all 20 decisions.</p><p>Seven volunteer controls contributed to training at half weight because their recruitment labels are weaker than tumour-specific image review. Three original MOTUM training scans were unavailable and remain recorded. The 21 reserved participants remain outside this experiment. Original failures and recovered transfers remain in the research record.</p><p>This classifier does not identify tumour type or check all brain conditions. The separate MOTUM glioma-versus-metastasis experiment still matched 7 / 11 known checking labels after additional training and was also rejected. Neither experiment supplies a reliable tumour diagnosis.</p></details>
+
+
+
+
+<p><strong>What would make the evidence stronger?</strong> Tumour-positive, expertly reviewed tumour-negative, and non-tumour abnormal scans collected using comparable imaging protocols, followed by genuinely separate testing. The <a href="https://zenodo.org/records/20281403">LUMC volunteer source</a> and <a href="https://www.nature.com/articles/s41597-024-03634-0">MOTUM tumour source</a> provide useful research data, but do not resolve those gaps.</p>
+
+
+
+
+</section>
+<section class="panel" id="reservedTumourCategoryEvidence">
+
+
+
+
+<h2>New check: comparing tumour categories on 26 public MRI cases</h2>
+
+
+
+
+<p>The fixed research model matched the recorded category for 6 of 26 public cases (23.1% including processing failures). It produced 15 predictions; 11 cases produced no prediction. Among the completed predictions, 6 of 15 matched (40.0%).</p>
+
+
+
+
+<p><strong>This result does not establish reliable diagnosis or a healthy-brain assessment.</strong> Every case in this check already had one of three recorded glioma categories. Healthy brains, other tumour families and other brain conditions were not tested.</p>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Original run and bounded verifier repair results"><table><caption>All 26 cases remain in the denominator. A software verification repair changes processing availability; it does not change the imaging model.</caption><thead><tr><th scope="col">Run</th><th scope="col">Predictions</th><th scope="col">Matches / all cases</th><th scope="col">Matches / completed predictions</th></tr></thead><tbody>
+
+
+
+
+<tr><th scope="row">Original fixed run</th><td>11 / 26</td><td>3 / 26 (11.5%)</td><td>3 / 11 (27.3%)</td></tr>
+
+
+
+
+<tr><th scope="row">After bounded verifier repair</th><td>15 / 26</td><td>6 / 26 (23.1%)</td><td>6 / 15 (40.0%)</td></tr>
+
+
+
+
+</tbody></table></div>
+
+
+
+
+<p>The nominal 95% interval for matches across all 26 cases is 9.0%–43.6%. This describes sampling uncertainty under a binomial assumption; it does not account for selected cases, possible training overlap or clinical use. Always choosing the training set's most common category, glioblastoma, would match 13 / 26 (50.0%).</p>
+
+
+
+
+<p>For a comparison using exactly the same 15 completed cases, always choosing glioblastoma would match 10 / 15 (66.7%), versus this model's 6 / 15 (40.0%). These results do not support a reliable tumour-category claim.</p>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Category-specific results"><table><caption>Reference categories come from the public dataset's histopathology and molecular fields. The model does not establish those molecular findings.</caption><thead><tr><th scope="col">Reference category</th><th scope="col">Cases</th><th scope="col">Correct category</th><th scope="col">No prediction</th><th scope="col">Correct / category cases</th><th scope="col">Correct / predictions of this category</th></tr></thead><tbody><tr><th scope="row">Glioblastoma</th><td>13</td><td>4</td><td>3</td><td>30.8%</td><td>4 / 4 (100.0%)</td></tr><tr><th scope="row">Astrocytoma (IDH-mutant reference)</th><td>7</td><td>1</td><td>4</td><td>14.3%</td><td>1 / 7 (14.3%)</td></tr><tr><th scope="row">Oligodendroglioma (IDH-mutant, codeleted reference)</th><td>6</td><td>1</td><td>4</td><td>16.7%</td><td>1 / 4 (25.0%)</td></tr></tbody></table></div>
+
+
+
+
+<details><summary>See every reference, prediction and failure</summary>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="All 26 public case comparisons"><table><caption>Original predictions stay recorded. The score gap is the difference between the model's top two research scores; it is not a clinical probability.</caption><thead><tr><th scope="col">Public case</th><th scope="col">Dataset reference</th><th scope="col">Original prediction</th><th scope="col">After verifier repair</th><th scope="col">Matches</th><th scope="col">Processing outcome</th><th scope="col">Score gap</th></tr></thead><tbody><tr><th scope="row">ReMIND-010</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Yes</td><td>Prediction completed</td><td>13.0%</td></tr><tr><th scope="row">ReMIND-013</th><td>Astrocytoma (IDH-mutant reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No</td><td>Prediction completed</td><td>8.2%</td></tr><tr><th scope="row">ReMIND-019</th><td>Glioblastoma</td><td>No prediction</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Verifier repaired; original failure retained</td><td>0.1%</td></tr><tr><th scope="row">ReMIND-026</th><td>Astrocytoma (IDH-mutant reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-028</th><td>Glioblastoma</td><td>Glioblastoma</td><td>Glioblastoma</td><td>Yes</td><td>Prediction completed</td><td>69.0%</td></tr><tr><th scope="row">ReMIND-041</th><td>Astrocytoma (IDH-mutant reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-044</th><td>Glioblastoma</td><td>Astrocytoma (IDH-mutant reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Prediction completed</td><td>6.3%</td></tr><tr><th scope="row">ReMIND-045</th><td>Glioblastoma</td><td>Glioblastoma</td><td>Glioblastoma</td><td>Yes</td><td>Prediction completed</td><td>76.0%</td></tr><tr><th scope="row">ReMIND-052</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Prediction completed</td><td>4.8%</td></tr><tr><th scope="row">ReMIND-055</th><td>Glioblastoma</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-056</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-058</th><td>Astrocytoma (IDH-mutant reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No</td><td>Prediction completed</td><td>14.2%</td></tr><tr><th scope="row">ReMIND-066</th><td>Glioblastoma</td><td>No prediction</td><td>Glioblastoma</td><td>Yes</td><td>Verifier repaired; original failure retained</td><td>0.8%</td></tr><tr><th scope="row">ReMIND-067</th><td>Glioblastoma</td><td>No prediction</td><td>Glioblastoma</td><td>Yes</td><td>Verifier repaired; original failure retained</td><td>27.2%</td></tr><tr><th scope="row">ReMIND-069</th><td>Glioblastoma</td><td>Astrocytoma (IDH-mutant reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Prediction completed</td><td>8.9%</td></tr><tr><th scope="row">ReMIND-076</th><td>Glioblastoma</td><td>Astrocytoma (IDH-mutant reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Prediction completed</td><td>4.8%</td></tr><tr><th scope="row">ReMIND-080</th><td>Astrocytoma (IDH-mutant reference)</td><td>No prediction</td><td>Astrocytoma (IDH-mutant reference)</td><td>Yes</td><td>Verifier repaired; original failure retained</td><td>9.8%</td></tr><tr><th scope="row">ReMIND-086</th><td>Glioblastoma</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-088</th><td>Glioblastoma</td><td>Astrocytoma (IDH-mutant reference)</td><td>Astrocytoma (IDH-mutant reference)</td><td>No</td><td>Prediction completed</td><td>20.5%</td></tr><tr><th scope="row">ReMIND-101</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-105</th><td>Glioblastoma</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No</td><td>Prediction completed</td><td>10.1%</td></tr><tr><th scope="row">ReMIND-108</th><td>Astrocytoma (IDH-mutant reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-109</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-110</th><td>Oligodendroglioma (IDH-mutant, codeleted reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-111</th><td>Astrocytoma (IDH-mutant reference)</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr><tr><th scope="row">ReMIND-114</th><td>Glioblastoma</td><td>No prediction</td><td>No prediction</td><td>No</td><td>No prediction</td><td>Undefined</td></tr></tbody></table></div></details>
+
+
+
+
+<details><summary>How the model and check work</summary>
+
+
+
+
+<p>This separate research experiment uses two MRI image sets: FLAIR and T1 with contrast. It checks original scan geometry, extracts a predicted brain boundary, attempts to align the images, then applies a frozen imaging encoder and a separately trained three-category classifier. The brain boundary is not a tumour outline.</p>
+
+
+
+
+<p>Only the small classification layer was trained on 67 cases. Fifteen already known validation cases selected its training checkpoint and score scaling. The 26 public cases were excluded from fitting and selection. Actual imaging weights stayed fixed during this check; no external language API interpreted the scans.</p>
+
+
+
+
+<p>Predictions and failures were saved before this scoring step opened clinical references. The developer had previously reviewed source metadata, and overlap with the encoder's original training patients remains unverified. This is an implementation and public-source research assessment by the same operator, not an external audit or a blinded clinical trial.</p>
+
+
+
+
+<p>The original verifier used a different nearest-neighbour resampling path from the preparation pipeline. Its repair checks the actual saved path and the already declared coverage threshold. Existing scans, transforms, weights and original outcomes were preserved. Genuine alignment failures were not retried to obtain a match.</p>
+
+
+
+
+<p>The encoder's downloaded weight metadata does not state redistribution permission. Those weights remain local research artifacts and are not included in a public release. The separate brain-extraction weights permit noncommercial use.</p></details>
+
+
+
+
+<p>The older four-image-set classifier matched 12 / 19 cases (63.2%) in its earlier test and matched none of three oligodendroglioma references. Those were different patients and inputs. The new result cannot establish an improvement on the same cases or superiority over other models.</p>
+
+
+
+
+<p><strong>What is available in the website?</strong> Its imaging workflow still uses the published region-marking models. This new category experiment remains offline; it has not been added as a diagnostic result. The evidence helps decide what to improve next.</p>
+
+
+
+
+<p>Public data: <a href="https://www.cancerimagingarchive.net/collection/remind/">ReMIND contributors and TCIA</a>, DOI 10.7937/3RAG-D070, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Brain-extraction weights: <a href="https://zenodo.org/records/14445620">HD-BET authors, CC BY-NC 4.0</a>; local noncommercial research. Saved comparison: 2026-10-07T05:59:12.679053+00:00.</p>
+
+
+
+
+<details id="compactPreparationFollowup"><summary>Engineering follow-up: three oversized scans now complete preparation</summary><p>A compact grid around the predicted brain boundary let three previously oversized scans complete preparation within the same size limit. Their original saved alignment transforms were reused, all full-grid brain-mask markings were retained, and the existing technical gates passed. Saved image values and interpolation replay were checked.</p><p>These are already known development cases. No tumour-category prediction or new training ran in this follow-up, so it does not change the 6 / 26 category matches above. A predicted brain boundary is not a tumour outline, and technical checks do not establish clinical image quality.</p></details>
+
+
+
+
+<details id="coordinatePreparationFollowup"><summary>Engineering follow-up: checking eight registration failures</summary><p>A separately recorded rule retained the scans' recorded patient coordinates when the saved registration worsened the image-matching score. Seven of eight pairs passed the original automatic preparation gates. One remained rejected because its FLAIR images covered only 72.3% of the predicted brain area.</p><p>Keeping recorded coordinates prevents the measured worsening; it does not prove anatomical alignment. These known development checks produced no new tumour-category predictions or training. Together with the compact-grid check, ten of eleven earlier preparation failures now pass automatic gates in development, while the original category results remain preserved.</p></details>
+
+
+
+
+<details id="multisourceTrainingFollowup"><summary>Additional training: the larger model did not improve the overall result</summary>
+
+
+
+
+<p>We trained two new research classifiers using 85 patients from two public datasets and checked them on 23 known development patients. The rare-category fitting examples increased from seven to twelve. The existing 3D imaging encoder stayed fixed; only the classifiers learned.</p>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Additional training on known development cases"><table><caption>Same 23 known development cases for all three models. These cases influenced development and checkpoint selection; these percentages are not fresh-test or clinical accuracy.</caption><thead><tr><th scope="col">Model</th><th scope="col">Matches / known cases</th><th scope="col">UCSF group</th><th scope="col">ReMIND group</th></tr></thead><tbody><tr><th scope="row">Existing model</th><td>16 / 23 (69.6%)</td><td>12 / 15</td><td>4 / 8</td></tr><tr><th scope="row">New linear model</th><td>15 / 23 (65.2%)</td><td>10 / 15</td><td>5 / 8</td></tr><tr><th scope="row">New larger model</th><td>14 / 23 (60.9%)</td><td>11 / 15</td><td>3 / 8</td></tr></tbody></table></div>
+
+
+
+
+<p><strong>Both new classifiers performed worse overall, so the existing inference model was retained.</strong> The new linear classifier improved the ReMIND subgroup by one case but declined in the UCSF subgroup. Making the classifier larger did not improve the combined result.</p>
+
+
+
+
+<p>The saved training steps, patient roles, predictions and model calculations were checked. These checks establish that the experiment ran correctly; they do not establish a reliable tumour diagnosis. The original 26-case assessment above remains unchanged. New unseen cases and qualified image review are still needed. Healthy-brain recognition and tumour presence were not evaluated.</p></details>
+
+
+
+
+<details id="negativePenaltyTrainingFollowup"><summary>Full-model training: checking missed regions and extra markings</summary><p>The complete 4.7-million-parameter imaging model was trained on 22 research studies with a stronger penalty for extra core and enhancing-region markings. Actual updates: 132 of 132 planned. The same four known studies were used for checking.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Stronger negative-penalty training comparison"><table><caption>Known development studies. Dice measures outline agreement; it is not diagnostic accuracy. Missed and extra core volumes total successful checking studies.</caption><thead><tr><th scope="col">Method</th><th scope="col">Studies</th><th scope="col">Defined scores</th><th scope="col">Mean Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">Published baseline</th><td>4/4</td><td>12/12</td><td>0.472</td><td>27.651</td><td>26.821</td></tr><tr><th scope="row">Previous objective, pass 1</th><td>4/4</td><td>12/12</td><td>0.578</td><td>5.363</td><td>40.334</td></tr><tr><th scope="row">Previous objective, pass 2</th><td>4/4</td><td>12/12</td><td>0.592</td><td>2.932</td><td>42.925</td></tr><tr><th scope="row">Previous objective, pass 3</th><td>4/4</td><td>12/12</td><td>0.575</td><td>2.457</td><td>50.430</td></tr><tr><th scope="row">Stronger negative penalty, pass 1</th><td>4/4</td><td>12/12</td><td>0.576</td><td>5.625</td><td>39.504</td></tr><tr><th scope="row">Stronger negative penalty, pass 2</th><td>4/4</td><td>12/12</td><td>0.601</td><td>3.318</td><td>38.699</td></tr><tr><th scope="row">Stronger negative penalty, pass 3</th><td>4/4</td><td>12/12</td><td>0.584</td><td>2.894</td><td>43.449</td></tr></tbody></table></div><p><strong>No pass met every fixed development rule. No new model was selected or adopted by the website.</strong></p><p>Real training steps, saved weights and native-volume comparisons were verified. The fixed missed/extra-marking and regression rules remain in place. The eight reserved studies remain unopened. This experiment does not establish tumour type, a healthy-brain decision or correct detection in every case.</p></details>
+
+
+
+
+<details id="hardNegativeSamplingFollowup"><summary>Training follow-up: learning from extra markings</summary><p>The full imaging model completed 132 of 132 planned learning updates on 22 research studies. Half of its planned examples focused on places the published model marked as core but the training reference did not. The original labels were retained, including every positive target.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Training-only extra-core sampling results"><table><caption>The same four known checking scans and ten regions with reference outlines. Dice measures outline agreement, not diagnostic accuracy. Missed and extra core volumes total successful scans.</caption><thead><tr><th scope="col">Method</th><th scope="col">Scans</th><th scope="col">Available scores</th><th scope="col">Mean Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">Published baseline</th><td>4/4</td><td>10/10</td><td>0.566</td><td>27.651</td><td>26.821</td></tr><tr><th scope="row">Previous uniform sampling, pass 1</th><td>4/4</td><td>10/10</td><td>0.691</td><td>5.625</td><td>39.504</td></tr><tr><th scope="row">Previous uniform sampling, pass 2</th><td>4/4</td><td>10/10</td><td>0.721</td><td>3.318</td><td>38.699</td></tr><tr><th scope="row">Previous uniform sampling, pass 3</th><td>4/4</td><td>10/10</td><td>0.701</td><td>2.894</td><td>43.449</td></tr><tr><th scope="row">Training extra-core sampling, pass 1</th><td>4/4</td><td>10/10</td><td>0.704</td><td>4.799</td><td>39.695</td></tr><tr><th scope="row">Training extra-core sampling, pass 2</th><td>4/4</td><td>10/10</td><td>0.729</td><td>3.622</td><td>35.250</td></tr><tr><th scope="row">Training extra-core sampling, pass 3</th><td>4/4</td><td>10/10</td><td>0.735</td><td>3.633</td><td>36.029</td></tr></tbody></table></div><p><strong>All trained passes failed at least one unchanged development rule. No candidate was selected or adopted by the website.</strong></p><p>The original acceptance rules and all failed attempts remain in the evidence record. The eight reserved scans remain unopened. These results do not establish tumour type, a healthy brain or correct detection in every case.</p></details>
+
+
+
+
+</section>
+<section class="panel" id="swinDevelopmentEvidence"><h2>Earlier check: a larger model on four MRI studies</h2>
+
+
+
+
+
+
+
+
+
+<p>We compared published Swin UNETR with the original SegResNet and the three earlier training passes. Swin has about 62 million parameters. No model was trained in this check. These are the same four checking studies whose reference answers were already known.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>The larger model improved the average, but one scan got worse. It did not pass every comparison requirement.</strong> On study FO14, whole-region overlap fell from 64.5% to 40.2%. The website's inference models were not replaced.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Same-study comparison of five saved model stages"><table><caption>Same ten regions with a nonempty reference outline, for every model. Dice measures outline agreement from 0 to 1, not diagnostic accuracy. Missed and extra core amounts total all four studies.</caption><thead><tr><th scope="col">Model / progress</th><th scope="col">Same-region mean Dice</th><th scope="col">Studies available</th><th scope="col">Reference-present scores</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">Published SegResNet</th><td>0.566</td><td>4/4</td><td>10/10</td><td>27.651</td><td>26.821</td></tr><tr><th scope="row">SegResNet after 44 updates</th><td>0.693</td><td>4/4</td><td>10/10</td><td>5.363</td><td>40.334</td></tr><tr><th scope="row">SegResNet after 88 updates</th><td>0.711</td><td>4/4</td><td>10/10</td><td>2.932</td><td>42.925</td></tr><tr><th scope="row">SegResNet after 132 updates</th><td>0.690</td><td>4/4</td><td>10/10</td><td>2.457</td><td>50.430</td></tr><tr><th scope="row">Published Swin UNETR</th><td>0.759</td><td>4/4</td><td>10/10</td><td>17.986</td><td>4.871</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>The average uses ten identical reference-present regions for every model. Two absent reference regions on FO14 are reported separately below. Swin marked neither absent region; their Dice is undefined because both masks are empty. An empty result does not mean a healthy brain. Earlier training tables average twelve defined scores, so their means must not be compared directly with this ten-region mean.</p>
+
+
+
+
+
+
+
+
+
+<p>On FO14, Swin captured 25.6% of the reference whole outline and missed 23.186 mL, compared with 11.870 mL missed by the original model. Lower extra markings and a higher overall average do not erase this loss. The comparison rules were fixed before scoring; the permitted regional decrease was 0.05.</p>
+
+
+
+
+
+
+
+
+
+<details><summary>See all twenty comparisons and their execution outcomes</summary>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="All twenty same-study comparisons"><table><caption>Every study appears for every model. Recovered computations retain their original failed worker exit; previous completed predictions were reused.</caption><thead><tr><th scope="col">Study</th><th scope="col">Model / progress</th><th scope="col">Whole Dice</th><th scope="col">Core Dice</th><th scope="col">Enhancing Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th><th scope="col">Computation availability</th></tr></thead><tbody><tr><th scope="row">sub-FO14</th><td>Published SegResNet</td><td>0.645</td><td>0.000</td><td>0.000</td><td>0.000</td><td>10.672</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-ME1</th><td>Published SegResNet</td><td>0.702</td><td>0.700</td><td>0.493</td><td>24.654</td><td>1.112</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-JS04</th><td>Published SegResNet</td><td>0.907</td><td>0.946</td><td>0.878</td><td>1.038</td><td>3.712</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-BO158</th><td>Published SegResNet</td><td>0.339</td><td>0.007</td><td>0.042</td><td>1.959</td><td>11.325</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 44 updates</td><td>0.646</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.780</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-ME1</th><td>SegResNet after 44 updates</td><td>0.845</td><td>0.915</td><td>0.740</td><td>4.132</td><td>5.238</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-JS04</th><td>SegResNet after 44 updates</td><td>0.909</td><td>0.887</td><td>0.869</td><td>0.297</td><td>10.497</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-BO158</th><td>SegResNet after 44 updates</td><td>0.360</td><td>0.180</td><td>0.580</td><td>0.934</td><td>8.819</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 88 updates</td><td>0.605</td><td>0.000</td><td>0.000</td><td>0.000</td><td>16.279</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-ME1</th><td>SegResNet after 88 updates</td><td>0.846</td><td>0.895</td><td>0.778</td><td>2.604</td><td>9.619</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-JS04</th><td>SegResNet after 88 updates</td><td>0.900</td><td>0.876</td><td>0.870</td><td>0.225</td><td>11.834</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-BO158</th><td>SegResNet after 88 updates</td><td>0.390</td><td>0.418</td><td>0.529</td><td>0.103</td><td>5.193</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 132 updates</td><td>0.564</td><td>0.000</td><td>0.000</td><td>0.000</td><td>18.675</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-ME1</th><td>SegResNet after 132 updates</td><td>0.850</td><td>0.888</td><td>0.796</td><td>2.192</td><td>11.102</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-JS04</th><td>SegResNet after 132 updates</td><td>0.896</td><td>0.882</td><td>0.870</td><td>0.225</td><td>11.186</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-BO158</th><td>SegResNet after 132 updates</td><td>0.446</td><td>0.292</td><td>0.416</td><td>0.040</td><td>9.467</td><td>Reused prior completed prediction</td></tr><tr><th scope="row">sub-FO14</th><td>Published Swin UNETR</td><td>0.402</td><td>Undefined: both empty</td><td>Undefined: both empty</td><td>0.000</td><td>0.000</td><td>Recovered computation; original exit 1</td></tr><tr><th scope="row">sub-ME1</th><td>Published Swin UNETR</td><td>0.850</td><td>0.811</td><td>0.692</td><td>15.892</td><td>2.130</td><td>Completed replay; exit 0</td></tr><tr><th scope="row">sub-JS04</th><td>Published Swin UNETR</td><td>0.911</td><td>0.953</td><td>0.927</td><td>1.793</td><td>2.280</td><td>Recovered computation; original exit 1</td></tr><tr><th scope="row">sub-BO158</th><td>Published Swin UNETR</td><td>0.435</td><td>0.817</td><td>0.795</td><td>0.301</td><td>0.461</td><td>Recovered computation; original exit 1</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+<details><summary>See every result where the reference region was empty</summary>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="All ten reference-absent comparisons"><table><caption>The reference has no core or enhancing marking on FO14. Predicted amounts remain visible; both-empty overlap is undefined.</caption><thead><tr><th scope="col">Study</th><th scope="col">Model / progress</th><th scope="col">Absent reference region</th><th scope="col">Predicted mL</th><th scope="col">Exactly empty prediction</th><th scope="col">Dice</th></tr></thead><tbody><tr><th scope="row">sub-FO14</th><td>Published SegResNet</td><td>core</td><td>10.672</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>Published SegResNet</td><td>enhancing</td><td>0.258</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 44 updates</td><td>core</td><td>15.780</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 44 updates</td><td>enhancing</td><td>1.291</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 88 updates</td><td>core</td><td>16.279</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 88 updates</td><td>enhancing</td><td>1.883</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 132 updates</td><td>core</td><td>18.675</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>SegResNet after 132 updates</td><td>enhancing</td><td>3.851</td><td>No</td><td>0.000</td></tr><tr><th scope="row">sub-FO14</th><td>Published Swin UNETR</td><td>core</td><td>0.000</td><td>Yes</td><td>Undefined: both empty</td></tr><tr><th scope="row">sub-FO14</th><td>Published Swin UNETR</td><td>enhancing</td><td>0.000</td><td>Yes</td><td>Undefined: both empty</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+<p>All sixty region measurements were separately recalculated from the saved files. The first attempt had four overall execution failures: three complete predictions were recovered after a status-reporting error, and one interrupted prediction was run again once. Those original failures remain in the record. A completed computation is not a medically correct finding.</p>
+
+
+
+
+
+
+
+
+
+<p>This small check does not establish tumour-type identification, healthy-brain recognition, independent clinical accuracy or correct detection in every case. The eight reserved assessment studies remain unopened. The earlier rejected training experiments remain below.</p></section>
+<section class="panel" id="expandedTrainingEvidence"><h2>Earlier experiment: learning from 22 MRI studies</h2>
+
+
+
+
+
+
+
+
+
+<p>We retained the original eight training studies and added fourteen verified public studies. The same four checking studies help us compare the results; they do not supply the model's learning updates. Eight reserved test studies remain unopened. This run started from the published model again, with three planned passes and 132 planned learning updates.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>None of the three passes met every requirement for adoption. The trained models remain experiments, and the website continues to use its published pretrained models.</strong></p><p>Completed learning updates: 132/132 (pass 1: 44/44, success, pass 2: 44/44, success, pass 3: 44/44, success). The separate audit checked saved models, optimizer counters, crop coordinates and native reference comparisons.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Expanded training baseline and all three passes"><table><caption>Same four checking studies. Dice measures outline agreement from 0 to 1, not diagnostic accuracy. Missed and extra core amounts total the successful comparisons; incomplete outcomes stay visible.</caption><thead><tr><th scope="col">Progress</th><th scope="col">Mean regional Dice</th><th scope="col">Studies checked</th><th scope="col">Defined scores</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">Before training</th><td>0.472</td><td>4/4</td><td>12/12</td><td>27.651</td><td>26.821</td></tr><tr><th scope="row">Pass 1</th><td>0.578</td><td>4/4</td><td>12/12</td><td>5.363</td><td>40.334</td></tr><tr><th scope="row">Pass 2</th><td>0.592</td><td>4/4</td><td>12/12</td><td>2.932</td><td>42.925</td></tr><tr><th scope="row">Pass 3</th><td>0.575</td><td>4/4</td><td>12/12</td><td>2.457</td><td>50.430</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>Requirements stayed fixed: average gain at least 0.005 above the original model, no regional decline greater than 0.05, no increase in missed core tissue, and extra core markings no greater than 29.503 mL (110% of the original amount). All four outcomes and twelve defined regional scores are required. Better averages do not erase missed or extra tissue.</p><ul><li>Pass 1: At least one regional Dice decline exceeds 0.05; Total extra core exceeds 110% of baseline.</li><li>Pass 2: At least one regional Dice decline exceeds 0.05; Total extra core exceeds 110% of baseline.</li><li>Pass 3: At least one regional Dice decline exceeds 0.05; Total extra core exceeds 110% of baseline.</li></ul>
+
+
+
+
+
+
+
+
+
+<details><summary>See every comparison from the 22-study experiment</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All sixteen expanded-training checking outcomes"><table><caption>Every checking study appears at baseline and after each planned pass.</caption><thead><tr><th scope="col">Study</th><th scope="col">Progress</th><th scope="col">Whole Dice</th><th scope="col">Core Dice</th><th scope="col">Enhancing Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th><th scope="col">Outcome</th></tr></thead><tbody><tr><th scope="row">sub-FO14</th><td>Before training</td><td>0.645</td><td>0.000</td><td>0.000</td><td>0.000</td><td>10.672</td><td>Completed</td></tr><tr><th scope="row">sub-ME1</th><td>Before training</td><td>0.702</td><td>0.700</td><td>0.493</td><td>24.654</td><td>1.112</td><td>Completed</td></tr><tr><th scope="row">sub-JS04</th><td>Before training</td><td>0.907</td><td>0.946</td><td>0.878</td><td>1.038</td><td>3.712</td><td>Completed</td></tr><tr><th scope="row">sub-BO158</th><td>Before training</td><td>0.339</td><td>0.007</td><td>0.042</td><td>1.959</td><td>11.325</td><td>Completed</td></tr><tr><th scope="row">sub-FO14</th><td>Pass 1</td><td>0.646</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.780</td><td>Completed</td></tr><tr><th scope="row">sub-ME1</th><td>Pass 1</td><td>0.845</td><td>0.915</td><td>0.740</td><td>4.132</td><td>5.238</td><td>Completed</td></tr><tr><th scope="row">sub-JS04</th><td>Pass 1</td><td>0.909</td><td>0.887</td><td>0.869</td><td>0.297</td><td>10.497</td><td>Completed</td></tr><tr><th scope="row">sub-BO158</th><td>Pass 1</td><td>0.360</td><td>0.180</td><td>0.580</td><td>0.934</td><td>8.819</td><td>Completed</td></tr><tr><th scope="row">sub-FO14</th><td>Pass 2</td><td>0.605</td><td>0.000</td><td>0.000</td><td>0.000</td><td>16.279</td><td>Completed</td></tr><tr><th scope="row">sub-ME1</th><td>Pass 2</td><td>0.846</td><td>0.895</td><td>0.778</td><td>2.604</td><td>9.619</td><td>Completed</td></tr><tr><th scope="row">sub-JS04</th><td>Pass 2</td><td>0.900</td><td>0.876</td><td>0.870</td><td>0.225</td><td>11.834</td><td>Completed</td></tr><tr><th scope="row">sub-BO158</th><td>Pass 2</td><td>0.390</td><td>0.418</td><td>0.529</td><td>0.103</td><td>5.193</td><td>Completed</td></tr><tr><th scope="row">sub-FO14</th><td>Pass 3</td><td>0.564</td><td>0.000</td><td>0.000</td><td>0.000</td><td>18.675</td><td>Completed</td></tr><tr><th scope="row">sub-ME1</th><td>Pass 3</td><td>0.850</td><td>0.888</td><td>0.796</td><td>2.192</td><td>11.102</td><td>Completed</td></tr><tr><th scope="row">sub-JS04</th><td>Pass 3</td><td>0.896</td><td>0.882</td><td>0.870</td><td>0.225</td><td>11.186</td><td>Completed</td></tr><tr><th scope="row">sub-BO158</th><td>Pass 3</td><td>0.446</td><td>0.292</td><td>0.416</td><td>0.040</td><td>9.467</td><td>Completed</td></tr></tbody></table></div></details>
+
+
+
+
+
+
+
+
+
+<p>All fourteen new studies and their original reference files passed separate identity and coordinate checks. One additional mask needed a lossless slice reversal: every original voxel, code count and physical position was verified, and the original file remains preserved. Exact MRI byte/pixel reuse was checked against 380 prior input files. This check does not establish patient or pretraining independence.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>What this means:</strong> More data is a hypothesis to test, not a guarantee. These scans contain glioblastoma cases with model-initialized, clinician-reviewed reference outlines. Region agreement does not establish tumour-type identification, healthy-brain recognition, independent clinical accuracy or correct detection in every case. Empty reference regions do not establish a healthy brain. Earlier experiments and their failures remain below.</p></section>
+<section class="panel" id="objectiveTrainingEvidence"><h2>Earlier experiment: reducing extra markings</h2>
+
+
+
+
+
+
+
+
+
+<p>We tested a learning objective that also penalizes markings where the training reference is empty. It used the same eight training studies, the same image crops, the same published starting weights and the same four checking studies as the earlier run. Each experiment completed its own 48 learning updates; this was not one continuous 96-update training run.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>All three passes failed the requirements for adoption.</strong> Final average outline agreement moved from 0.556 to 0.559, while extra core markings fell from 42.010 to 41.437 mL. This small improvement does not meet the fixed error limits. The website continues to use its published pretrained models.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Controlled comparison of two training objectives"><table><caption>Same four checking studies. Dice is outline agreement from 0 to 1, not diagnostic accuracy. Tissue amounts are totals for the newer objective.</caption><thead><tr><th scope="col">Progress</th><th scope="col">Earlier mean Dice</th><th scope="col">Newer mean Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th><th scope="col">Studies checked</th><th scope="col">Defined scores</th></tr></thead><tbody><tr><th scope="row">Before training</th><td>0.472</td><td>0.472</td><td>27.651</td><td>26.821</td><td>4/4</td><td>12/12</td></tr><tr><th scope="row">After 16 updates</th><td>0.512</td><td>0.511</td><td>16.786</td><td>35.066</td><td>4/4</td><td>12/12</td></tr><tr><th scope="row">After 32 updates</th><td>0.542</td><td>0.543</td><td>9.438</td><td>40.064</td><td>4/4</td><td>12/12</td></tr><tr><th scope="row">After 48 updates</th><td>0.556</td><td>0.559</td><td>6.233</td><td>41.437</td><td>4/4</td><td>12/12</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>The requirements stay fixed: average gain at least 0.005 above the original model, no regional decline greater than 0.05, no increase in missed core tissue, and extra core markings no greater than 29.503 mL (110% of the original amount). All four comparisons and twelve region scores must be measurable.</p><ul><li>After 16 updates: Total extra core exceeds 110% of baseline.</li><li>After 32 updates: Total extra core exceeds 110% of baseline.</li><li>After 48 updates: At least one regional Dice decline exceeds 0.05; Total extra core exceeds 110% of baseline.</li></ul>
+
+
+
+
+
+
+
+
+
+<details><summary>See all 16 comparisons from the newer objective</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All objective-experiment development comparisons"><table><caption>Baseline plus all three passes, with every checking study retained.</caption><thead><tr><th scope="col">Study</th><th scope="col">Progress</th><th scope="col">Whole Dice</th><th scope="col">Core Dice</th><th scope="col">Enhancing Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">sub-FO14</th><td>Before training</td><td>0.645</td><td>0.000</td><td>0.000</td><td>0.000</td><td>10.672</td></tr><tr><th scope="row">sub-ME1</th><td>Before training</td><td>0.702</td><td>0.700</td><td>0.493</td><td>24.654</td><td>1.112</td></tr><tr><th scope="row">sub-JS04</th><td>Before training</td><td>0.907</td><td>0.946</td><td>0.878</td><td>1.038</td><td>3.712</td></tr><tr><th scope="row">sub-BO158</th><td>Before training</td><td>0.339</td><td>0.007</td><td>0.042</td><td>1.959</td><td>11.325</td></tr><tr><th scope="row">sub-FO14</th><td>After 16 updates</td><td>0.646</td><td>0.000</td><td>0.000</td><td>0.000</td><td>14.418</td></tr><tr><th scope="row">sub-ME1</th><td>After 16 updates</td><td>0.818</td><td>0.832</td><td>0.609</td><td>14.385</td><td>1.843</td></tr><tr><th scope="row">sub-JS04</th><td>After 16 updates</td><td>0.915</td><td>0.928</td><td>0.880</td><td>0.583</td><td>5.965</td></tr><tr><th scope="row">sub-BO158</th><td>After 16 updates</td><td>0.340</td><td>0.025</td><td>0.143</td><td>1.818</td><td>12.840</td></tr><tr><th scope="row">sub-FO14</th><td>After 32 updates</td><td>0.636</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.638</td></tr><tr><th scope="row">sub-ME1</th><td>After 32 updates</td><td>0.839</td><td>0.899</td><td>0.700</td><td>7.653</td><td>2.951</td></tr><tr><th scope="row">sub-JS04</th><td>After 32 updates</td><td>0.912</td><td>0.907</td><td>0.879</td><td>0.332</td><td>8.423</td></tr><tr><th scope="row">sub-BO158</th><td>After 32 updates</td><td>0.331</td><td>0.071</td><td>0.342</td><td>1.453</td><td>13.052</td></tr><tr><th scope="row">sub-FO14</th><td>After 48 updates</td><td>0.634</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.941</td></tr><tr><th scope="row">sub-ME1</th><td>After 48 updates</td><td>0.839</td><td>0.915</td><td>0.752</td><td>4.813</td><td>4.455</td></tr><tr><th scope="row">sub-JS04</th><td>After 48 updates</td><td>0.910</td><td>0.891</td><td>0.876</td><td>0.227</td><td>10.225</td></tr><tr><th scope="row">sub-BO158</th><td>After 48 updates</td><td>0.337</td><td>0.119</td><td>0.441</td><td>1.193</td><td>10.816</td></tr></tbody></table></div></details>
+
+
+
+
+
+
+
+
+
+<p>The final pass also reduced core agreement by more than 0.05 on one checking study. Better averages do not erase this error. The original training results remain below for comparison, and the eight reserved test studies remain unopened.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>Evidence limits:</strong> These are repeated development checks on a small glioblastoma-only source with model-initialized, clinician-reviewed references. They do not establish independent clinical accuracy, tumour-type identification, healthy-brain recognition or correct detection in every case. An empty reference region does not establish a healthy brain.</p></section>
+<section class="panel" id="fullModelTrainingEvidence"><h2>Earlier experiment: learning from eight brain MRI studies</h2>
+
+
+
+
+
+
+
+
+
+<p>We trained all 4.7 million model parameters in three passes over eight public MRI studies, completing 48 saved learning updates. We then checked each pass on the same four separate development studies. These four studies help us choose a candidate; they were not used for the model's learning updates. Eight further studies remain unopened for later testing.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>None of the three passes met every development rule. The trained models remain research experiments; the website continues to use its published pretrained models.</strong></p>
+
+
+
+
+
+
+
+
+
+<p>Two errors matter: tissue the model misses and tissue it marks outside the reference outline. A better average does not excuse a large increase in extra marking.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="All three full-model training passes and the baseline"><table><caption>Same four development studies throughout. Dice measures outline agreement from 0 to 1, not the chance that a diagnosis is correct. Tissue amounts are totals across completed studies.</caption><thead><tr><th scope="col">Training progress</th><th scope="col">Mean regional Dice</th><th scope="col">Studies checked</th><th scope="col">Defined region scores</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">Before training</th><td>0.472</td><td>4/4</td><td>12/12</td><td>27.651</td><td>26.821</td></tr><tr><th scope="row">After 16 updates</th><td>0.512</td><td>4/4</td><td>12/12</td><td>16.829</td><td>35.117</td></tr><tr><th scope="row">After 32 updates</th><td>0.542</td><td>4/4</td><td>12/12</td><td>9.638</td><td>40.305</td></tr><tr><th scope="row">After 48 updates</th><td>0.556</td><td>4/4</td><td>12/12</td><td>6.370</td><td>42.010</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>Before training, we fixed the requirements: improve average agreement by at least 0.005, avoid a regional decline greater than 0.05, avoid increasing missed core tissue, and keep extra core marking within 110% of the original amount. All four comparisons and twelve region scores must be measurable.</p><ul><li>After 16 updates: Total extra core exceeds 110% of baseline.</li><li>After 32 updates: Total extra core exceeds 110% of baseline.</li><li>After 48 updates: At least one regional Dice decline exceeds 0.05; Total extra core exceeds 110% of baseline.</li></ul>
+
+
+
+
+
+
+
+
+
+<details><summary>See every development study and its errors</summary><div class="table-scroll" tabindex="0" role="region" aria-label="Every full-model development comparison"><table><caption>All 16 study-and-model comparisons remain visible. These are development results, not independent clinical testing.</caption><thead><tr><th scope="col">Study</th><th scope="col">Progress</th><th scope="col">Whole Dice</th><th scope="col">Core Dice</th><th scope="col">Enhancing Dice</th><th scope="col">Missed core mL</th><th scope="col">Extra core mL</th></tr></thead><tbody><tr><th scope="row">sub-FO14</th><td>Before training</td><td>0.645</td><td>0.000</td><td>0.000</td><td>0.000</td><td>10.672</td></tr><tr><th scope="row">sub-ME1</th><td>Before training</td><td>0.702</td><td>0.700</td><td>0.493</td><td>24.654</td><td>1.112</td></tr><tr><th scope="row">sub-JS04</th><td>Before training</td><td>0.907</td><td>0.946</td><td>0.878</td><td>1.038</td><td>3.712</td></tr><tr><th scope="row">sub-BO158</th><td>Before training</td><td>0.339</td><td>0.007</td><td>0.042</td><td>1.959</td><td>11.325</td></tr><tr><th scope="row">sub-FO14</th><td>After 16 updates</td><td>0.645</td><td>0.000</td><td>0.000</td><td>0.000</td><td>14.389</td></tr><tr><th scope="row">sub-ME1</th><td>After 16 updates</td><td>0.817</td><td>0.832</td><td>0.608</td><td>14.454</td><td>1.847</td></tr><tr><th scope="row">sub-JS04</th><td>After 16 updates</td><td>0.915</td><td>0.928</td><td>0.881</td><td>0.565</td><td>6.023</td></tr><tr><th scope="row">sub-BO158</th><td>After 16 updates</td><td>0.341</td><td>0.026</td><td>0.148</td><td>1.810</td><td>12.858</td></tr><tr><th scope="row">sub-FO14</th><td>After 32 updates</td><td>0.634</td><td>0.000</td><td>0.000</td><td>0.000</td><td>15.670</td></tr><tr><th scope="row">sub-ME1</th><td>After 32 updates</td><td>0.840</td><td>0.897</td><td>0.698</td><td>7.877</td><td>2.912</td></tr><tr><th scope="row">sub-JS04</th><td>After 32 updates</td><td>0.912</td><td>0.906</td><td>0.880</td><td>0.309</td><td>8.558</td></tr><tr><th scope="row">sub-BO158</th><td>After 32 updates</td><td>0.332</td><td>0.070</td><td>0.339</td><td>1.452</td><td>13.165</td></tr><tr><th scope="row">sub-FO14</th><td>After 48 updates</td><td>0.633</td><td>0.000</td><td>0.000</td><td>0.000</td><td>16.033</td></tr><tr><th scope="row">sub-ME1</th><td>After 48 updates</td><td>0.840</td><td>0.915</td><td>0.752</td><td>4.907</td><td>4.377</td></tr><tr><th scope="row">sub-JS04</th><td>After 48 updates</td><td>0.910</td><td>0.889</td><td>0.876</td><td>0.214</td><td>10.440</td></tr><tr><th scope="row">sub-BO158</th><td>After 48 updates</td><td>0.336</td><td>0.109</td><td>0.410</td><td>1.249</td><td>11.160</td></tr></tbody></table></div></details>
+
+
+
+
+
+
+
+
+
+<p>One reference had its slices stored in the reverse order. A separate check proved that reversing the order preserved every label and its physical position; the original file and rejected check were retained. The first training attempt also stopped before any learning update because of an unsupported reproducibility setting. The corrected experiment and all failures are documented.</p>
+
+
+
+
+
+
+
+
+
+<p>One checking study has no core or enhancing region in its reference outline. Empty reference regions do not establish a healthy brain. Both-empty scores are reported as undefined, and extra markings are still counted.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>What can we claim?</strong> Real model training and all 48 saved 3D region measurements were checked. These studies come from a glioblastoma-only dataset with model-initialized, clinician-reviewed references. We have not established tumour-type identification, healthy-brain recognition, independent clinical accuracy or correct detection in every case.</p></section>
+<section class="panel" id="additionalSourceEvidence"><h2>Earlier check: eight additional MRI studies</h2>
+
+
+
+
+
+
+
+
+
+<p>We selected one additional public study from each of eight sites using only metadata. All three fixed model settings produced their recorded outcomes before this project downloaded any of these reference outlines. Every study and every failed or undefined comparison stays in the report. 24/24 reference comparisons completed.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>These scores measure how closely the 3D markings match the reference outlines.</strong> Dice runs from 0 to 1; it is not the probability that a tumour diagnosis is correct. A high average can still hide tissue missed in an individual scan.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Mean and range of outline agreement on eight additional studies"><table><caption>Mean Dice, lowest to highest Dice, and the number of defined measurements. Failed and both-empty measurements are excluded from these means and listed below.</caption><thead><tr><th scope="col">Fixed method</th><th scope="col">Whole region</th><th scope="col">Core</th><th scope="col">Enhancing region</th><th scope="col">Comparisons completed</th></tr></thead><tbody><tr><th scope="row">SegResNet: smaller window</th><td>0.356<br><small>Range 0.098 to 0.882; 8/8 defined</small></td><td>0.400<br><small>Range 0.015 to 0.764; 8/8 defined</small></td><td>0.343<br><small>Range 0.012 to 0.769; 8/8 defined</small></td><td>8/8</td></tr><tr><th scope="row">SegResNet: published window</th><td>0.798<br><small>Range 0.513 to 0.961; 8/8 defined</small></td><td>0.897<br><small>Range 0.743 to 0.977; 8/8 defined</small></td><td>0.775<br><small>Range 0.620 to 0.905; 8/8 defined</small></td><td>8/8</td></tr><tr><th scope="row">Swin UNETR</th><td>0.884<br><small>Range 0.645 to 0.969; 8/8 defined</small></td><td>0.940<br><small>Range 0.897 to 0.981; 8/8 defined</small></td><td>0.870<br><small>Range 0.789 to 0.921; 8/8 defined</small></td><td>8/8</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>The whole region includes the labelled tumour area and surrounding swelling. The core is the labelled inner region; the enhancing region brightens after MRI contrast. These regions overlap and their volumes must not be added together.</p>
+
+
+
+
+
+
+
+
+
+<ul><li>SegResNet: smaller window: 8/8 comparisons completed. Failed study IDs: none. Undefined region IDs: whole: none; core: none; enhancing: none.</li><li>SegResNet: published window: 8/8 comparisons completed. Failed study IDs: none. Undefined region IDs: whole: none; core: none; enhancing: none.</li><li>Swin UNETR: 8/8 comparisons completed. Failed study IDs: none. Undefined region IDs: whole: none; core: none; enhancing: none.</li></ul>
+
+
+
+
+
+
+
+
+
+<p><strong>Did the larger viewing window help?</strong> Compared with the smaller SegResNet window, the paired results were whole: 8 improved, 0 worsened, 0 unchanged out of 8 defined pairs; core: 8 improved, 0 worsened, 0 unchanged out of 8 defined pairs; enhancing: 8 improved, 0 worsened, 0 unchanged out of 8 defined pairs. No weights were trained or adjusted for these studies, and the website model was not automatically replaced.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Missed and extra core tissue across successfully scored additional studies"><table><caption>Total core tissue missed and marked outside the reference, in mL. Totals cover completed comparisons only; they are not percentages or counts of missed tumours.</caption><thead><tr><th scope="col">Method</th><th scope="col">Core missed mL</th><th scope="col">Core extra mL</th><th scope="col">Studies included</th></tr></thead><tbody><tr><th scope="row">SegResNet: smaller window</th><td>431.517</td><td>7.149</td><td>8/8</td></tr><tr><th scope="row">SegResNet: published window</th><td>72.711</td><td>59.526</td><td>8/8</td></tr><tr><th scope="row">Swin UNETR</th><td>26.745</td><td>33.639</td><td>8/8</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<details><summary>See every study, model and error measurement</summary><div class="table-scroll" tabindex="0" role="region" aria-label="All twenty-four planned additional-study comparisons"><table><caption>All eight studies and all three fixed settings. Undefined means both regional masks were empty; it does not mean a healthy brain.</caption><thead><tr><th scope="col">Study</th><th scope="col">Method</th><th scope="col">Whole Dice</th><th scope="col">Core Dice</th><th scope="col">Enhancing Dice</th><th scope="col">Core missed mL</th><th scope="col">Core extra mL</th><th scope="col">Outcome</th></tr></thead><tbody><tr><th scope="row">sub-BA4</th><td>SegResNet: smaller window</td><td>0.882</td><td>0.729</td><td>0.490</td><td>13.227</td><td>0.114</td><td>Completed</td></tr><tr><th scope="row">sub-BA4</th><td>SegResNet: published window</td><td>0.961</td><td>0.977</td><td>0.805</td><td>1.086</td><td>0.315</td><td>Completed</td></tr><tr><th scope="row">sub-BA4</th><td>Swin UNETR</td><td>0.969</td><td>0.981</td><td>0.890</td><td>1.116</td><td>0.034</td><td>Completed</td></tr><tr><th scope="row">sub-BO92</th><td>SegResNet: smaller window</td><td>0.625</td><td>0.764</td><td>0.719</td><td>1.547</td><td>0.000</td><td>Completed</td></tr><tr><th scope="row">sub-BO92</th><td>SegResNet: published window</td><td>0.665</td><td>0.934</td><td>0.886</td><td>0.466</td><td>0.040</td><td>Completed</td></tr><tr><th scope="row">sub-BO92</th><td>Swin UNETR</td><td>0.837</td><td>0.910</td><td>0.870</td><td>0.667</td><td>0.000</td><td>Completed</td></tr><tr><th scope="row">sub-FO13</th><td>SegResNet: smaller window</td><td>0.702</td><td>0.654</td><td>0.436</td><td>25.800</td><td>4.868</td><td>Completed</td></tr><tr><th scope="row">sub-FO13</th><td>SegResNet: published window</td><td>0.849</td><td>0.811</td><td>0.651</td><td>0.236</td><td>25.146</td><td>Completed</td></tr><tr><th scope="row">sub-FO13</th><td>Swin UNETR</td><td>0.908</td><td>0.951</td><td>0.873</td><td>0.855</td><td>4.722</td><td>Completed</td></tr><tr><th scope="row">sub-JS16</th><td>SegResNet: smaller window</td><td>0.112</td><td>0.193</td><td>0.203</td><td>46.717</td><td>0.046</td><td>Completed</td></tr><tr><th scope="row">sub-JS16</th><td>SegResNet: published window</td><td>0.763</td><td>0.947</td><td>0.852</td><td>2.084</td><td>3.552</td><td>Completed</td></tr><tr><th scope="row">sub-JS16</th><td>Swin UNETR</td><td>0.875</td><td>0.948</td><td>0.913</td><td>3.109</td><td>2.295</td><td>Completed</td></tr><tr><th scope="row">sub-KA67</th><td>SegResNet: smaller window</td><td>0.108</td><td>0.076</td><td>0.071</td><td>147.317</td><td>0.095</td><td>Completed</td></tr><tr><th scope="row">sub-KA67</th><td>SegResNet: published window</td><td>0.776</td><td>0.743</td><td>0.620</td><td>61.285</td><td>2.502</td><td>Completed</td></tr><tr><th scope="row">sub-KA67</th><td>Swin UNETR</td><td>0.949</td><td>0.963</td><td>0.921</td><td>4.297</td><td>7.124</td><td>Completed</td></tr><tr><th scope="row">sub-ME5</th><td>SegResNet: smaller window</td><td>0.193</td><td>0.033</td><td>0.040</td><td>120.958</td><td>1.951</td><td>Completed</td></tr><tr><th scope="row">sub-ME5</th><td>SegResNet: published window</td><td>0.929</td><td>0.930</td><td>0.793</td><td>4.290</td><td>13.722</td><td>Completed</td></tr><tr><th scope="row">sub-ME5</th><td>Swin UNETR</td><td>0.937</td><td>0.897</td><td>0.789</td><td>11.420</td><td>14.172</td><td>Completed</td></tr><tr><th scope="row">sub-NSK54</th><td>SegResNet: smaller window</td><td>0.098</td><td>0.015</td><td>0.012</td><td>75.334</td><td>0.000</td><td>Completed</td></tr><tr><th scope="row">sub-NSK54</th><td>SegResNet: published window</td><td>0.926</td><td>0.894</td><td>0.693</td><td>3.154</td><td>14.181</td><td>Completed</td></tr><tr><th scope="row">sub-NSK54</th><td>Swin UNETR</td><td>0.954</td><td>0.932</td><td>0.790</td><td>5.179</td><td>5.204</td><td>Completed</td></tr><tr><th scope="row">sub-TO063</th><td>SegResNet: smaller window</td><td>0.128</td><td>0.733</td><td>0.769</td><td>0.617</td><td>0.075</td><td>Completed</td></tr><tr><th scope="row">sub-TO063</th><td>SegResNet: published window</td><td>0.513</td><td>0.942</td><td>0.905</td><td>0.110</td><td>0.068</td><td>Completed</td></tr><tr><th scope="row">sub-TO063</th><td>Swin UNETR</td><td>0.645</td><td>0.939</td><td>0.918</td><td>0.102</td><td>0.088</td><td>Completed</td></tr></tbody></table></div></details>
+
+
+
+
+
+
+
+
+
+<p><strong>What does this establish?</strong> It is a further check within the same public glioblastoma-only dataset. The references were initialized by a model and reviewed by clinicians; the initialization model and exposure during pretraining remain unresolved. It is not independent clinical validation, tumour-type accuracy or a test of healthy brains. These eight answers are now observed and cannot later be reused as untouched testing.</p>
+
+
+
+
+
+
+
+
+
+<p>A disk-space check stopped the initial image download before any model predictions or reference requests. We preserved that stop, reused nine files only after verifying their exact contents, and resumed with unchanged model settings. All 24 prediction outcomes were locked before reference requests; the completed 3D counts and reported denominators were independently reconstructed.</p>
+
+
+
+
+
+
+
+
+
+<p><a href="https://openneuro.org/datasets/ds007045/versions/1.0.1" target="_blank" rel="noopener">Pinned public dataset (opens a new tab)</a> &middot; <a href="https://www.nature.com/articles/s41597-026-07953-2" target="_blank" rel="noopener">Primary paper and reference codebook (opens a new tab)</a></p></section>
+<section class="panel" id="earlierThreeStudyEvidence"><h2>New public MRI comparison: three studies</h2>
+
+
+
+
+
+
+
+
+
+<p>We compared the two website models on three public MRI examinations from three sites. Each patient in this source already had glioblastoma. We saved all six predictions before downloading the reference outlines, then checked every score directly against the saved 3D masks.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>Swin matched the reference outlines more closely on these three studies.</strong> Both models still missed labelled tissue. This small comparison helps us choose what to investigate next; it does not establish that a model diagnoses tumours correctly.</p>
+
+
+
+
+
+
+
+
+
+<p>The overlap score, called Dice, runs from 0 to 1. A score of 1 means two outlines match completely. It is not the chance that a diagnosis is correct.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Mean outline agreement on three new public studies"><table><caption>Mean outline agreement. All six model runs and all 18 region measurements completed.</caption><thead><tr><th scope="col">Model</th><th scope="col">Whole region</th><th scope="col">Core</th><th scope="col">Enhancing region</th></tr></thead><tbody><tr><th scope="row">SegResNet: current website window</th><td>0.539</td><td>0.663</td><td>0.597</td></tr><tr><th scope="row">Swin UNETR</th><td>0.941</td><td>0.958</td><td>0.906</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p><strong>What do the regions mean?</strong> The whole region includes all tissue labelled in this dataset, including surrounding swelling. The core includes the labelled inner region; the enhancing region is the part that brightens after MRI contrast. These regions sit inside one another, so their volumes must not be added together. These labels do not determine tumour type or grade.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="All three studies and both models; includes missed and extra core tissue"><table><caption>Every study retained. Missed and extra tissue are measured against the reference core outline, in millilitres (mL).</caption><thead><tr><th scope="col">Study</th><th scope="col">Model</th><th scope="col">Whole overlap</th><th scope="col">Core overlap</th><th scope="col">Enhancing overlap</th><th scope="col">Core missed mL</th><th scope="col">Core extra mL</th></tr></thead><tbody><tr><th scope="row">sub-BO138</th><td>SegResNet: current website window</td><td>0.561</td><td>0.835</td><td>0.726</td><td>10.031</td><td>0.000</td></tr><tr><th scope="row">sub-BO138</th><td>Swin UNETR</td><td>0.935</td><td>0.950</td><td>0.918</td><td>3.375</td><td>0.000</td></tr><tr><th scope="row">sub-TO054</th><td>SegResNet: current website window</td><td>0.842</td><td>0.957</td><td>0.899</td><td>3.037</td><td>0.045</td></tr><tr><th scope="row">sub-TO054</th><td>Swin UNETR</td><td>0.960</td><td>0.982</td><td>0.966</td><td>1.279</td><td>0.004</td></tr><tr><th scope="row">sub-FO01</th><td>SegResNet: current website window</td><td>0.214</td><td>0.198</td><td>0.168</td><td>76.074</td><td>0.007</td></tr><tr><th scope="row">sub-FO01</th><td>Swin UNETR</td><td>0.927</td><td>0.941</td><td>0.834</td><td>9.154</td><td>0.402</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>In study sub-FO01, SegResNet missed 76.1 mL of the reference core. Swin missed 9.2 mL and marked 0.4 mL outside it. A strong average still leaves errors that need review.</p>
+
+
+
+
+
+
+
+
+
+<h3>Checking how much of the scan the model sees at once</h3>
+
+
+
+
+
+
+
+
+
+<p>The website uses a smaller viewing window for SegResNet to limit memory. We separately reran these same studies with the larger window specified by the authors, keeping the weights and other comparison settings fixed. We also reran the smaller window on the same GPU as a control. Both new settings used full-precision calculations.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Development comparison of fixed SegResNet viewing windows"><table><caption>Known studies, not a new independent test. Both GPU settings completed on all three studies.</caption><thead><tr><th scope="col">Study</th><th scope="col">Smaller-window core overlap</th><th scope="col">Smaller-window core missed mL</th><th scope="col">Published-window core overlap</th><th scope="col">Published-window core missed mL</th></tr></thead><tbody><tr><th scope="row">sub-BO138</th><td>0.835</td><td>10.031</td><td>0.931</td><td>4.561</td></tr><tr><th scope="row">sub-TO054</th><td>0.957</td><td>3.037</td><td>0.979</td><td>1.116</td></tr><tr><th scope="row">sub-FO01</th><td>0.198</td><td>76.074</td><td>0.966</td><td>4.642</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>For sub-FO01, the published-window result missed 4.6 mL and marked 1.0 mL outside the reference core. The GPU control differed from the saved CPU predictions at 0 labelled voxels across the three scans; those differences remain recorded separately. The complete author environment was not reproduced. This was an inference-setting check, with no additional training or website-model replacement.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>What remains unproven?</strong> The references were first produced by a model, then reviewed and corrected by clinicians. The publication gives conflicting information about the initialization model, and we do not know whether these patients appeared in model training. This may favour related models. All three patients have the same known tumour family; these results do not test tumour-type identification, healthy brains or every brain condition. Their answers are now observed and cannot be reused as untouched testing.</p>
+
+
+
+
+
+
+
+
+
+<p><a href="https://openneuro.org/datasets/ds007045/versions/1.0.1" target="_blank" rel="noopener">Public dataset, pinned version 1.0.1 (opens a new tab)</a> · <a href="https://www.nature.com/articles/s41597-026-07953-2" target="_blank" rel="noopener">Primary paper and reference codebook (opens a new tab)</a> · <a href="https://huggingface.co/MONAI/brats_mri_segmentation/blob/370f7f9d062745fbac445e7fe6d6616d35df04ec/configs/train.json" target="_blank" rel="noopener">Published SegResNet window settings (opens a new tab)</a></p></section>
+<section class="panel" id="postoperativeEvidence"><h2>V2 test: 21 scans after surgery</h2><p>We trained a separate candidate called V2 on 40 scans, selected it using ten development scans, then compared it with the original model on 21 held-out scans. Both models finished their predictions before we opened the corresponding expert outlines. The patients in this dataset already had glioblastoma; this test measures how well the model marks the outlined regions.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Postoperative region overlap comparison; scroll horizontally if needed"><table><caption>Mean Dice overlap on the same scans. The combined row summarizes the two groups above it.</caption><thead><tr><th scope="col">Scan group</th><th scope="col">Scans</th><th scope="col">Original model</th><th scope="col">V2</th><th scope="col">Improved / worsened</th></tr></thead><tbody><tr><th scope="row">First held-out group</th><td>11</td><td>0.426</td><td>0.577</td><td>11 / 0</td></tr><tr><th scope="row">Additional held-out group</th><td>10</td><td>0.521</td><td>0.511</td><td>4 / 6</td></tr><tr><th scope="row">Combined</th><td>21</td><td>0.471</td><td>0.545</td><td>15 / 6</td></tr></tbody></table></div><p><strong>V2 improved 15 scans and worsened six. It did not pass every research check.</strong> Its individual overlap scores ranged from 0.170 to 0.930. In one scan, it marked about 794 mL while the expert outline covered about 111 mL. That substantial extra marking remains part of the result.</p><p><strong>0.545 overlap is not 54.5% diagnostic accuracy.</strong> These outlines do not establish whether a brain is healthy or which tumour type it has. Overlap with the original encoder's training data is unknown. The earlier five-scan scores below use different scans and region definitions, so they cannot be treated as a direct comparison.</p><p>V2 is a separate research experiment; the website continues to offer the official pretrained models. These 21 answers have now been viewed, so further experiments on them will be described as development comparisons. More training has not yet established perfect detection or clinical reliability.</p></section>
+<section class="panel"><h2>Did additional training improve it?</h2><p>We tested four pipelines: SegResNet, original Swin UNETR, an earlier small adaptation, and a new adaptation that trained 209,811 parameters. All 20 predictions completed, and 60 region measurements were independently recalculated from the saved files.</p><p>The new adaptation improved 6 region measurements and worsened 9 compared with the earlier adaptation. Its average whole/core overlap increased slightly, while enhancing-region overlap decreased. We kept it as an offline experiment. The website still offers the two official pretrained models.</p><p>This is a measured result, not a claim that we created a new foundation model or outperformed every existing model.</p></section>
+<section class="panel"><h2>Earlier training experiment: more image context</h2><p>We gave the model larger parts of each scan during another training pass on the same 40 training scans. On ten known validation scans, mean overlap rose from 0.642 to 0.664: eight improved and two worsened.</p><p>On the 21 scans whose answers had already been viewed, mean overlap rose only from 0.545 to 0.550: nine improved and twelve worsened. Two had substantial declines. This is a development comparison, not a new independent test. The candidate has not established a consistent improvement, so it remains a separate research experiment. It has not replaced a website model or established tumour-type or healthy-brain accuracy.</p></section>
+<section class="panel" id="inferenceRefinementEvidence"><h2>Fixed-model refinement: combining eight views of the same scan</h2><p>We kept the V2 model's weights fixed and combined predictions from mirrored versions of the same images. These are eight views of one examination, not eight new examinations. On ten already known validation scans, mean overlap rose from 0.642 to 0.658, with five improvements and five declines.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Retrospective inference refinement results; scroll horizontally if needed"><table><caption>Development comparison on 21 scans whose expert answers had already been viewed. This is not a new independent test.</caption><thead><tr><th scope="col">Scan group</th><th scope="col">Scans</th><th scope="col">V2</th><th scope="col">Refined method</th><th scope="col">Improved / worsened</th></tr></thead><tbody><tr><th scope="row">Previously tested first group</th><td>11</td><td>0.577</td><td>0.571</td><td>3 / 8</td></tr><tr><th scope="row">Previously tested additional group</th><td>10</td><td>0.511</td><td>0.544</td><td>8 / 2</td></tr><tr><th scope="row">Combined</th><td>21</td><td>0.545</td><td>0.558</td><td>11 / 10</td></tr></tbody></table></div><p><strong>A modest average gain still leaves substantial errors.</strong> Two scans declined by more than 0.05. One missed about 147 mL of a 209 mL expert outline; another still marked about 587 mL against an outline of about 111 mL. All 21 comparisons completed, but that does not mean complete tumour detection.</p><p>A separate previously unused case favoured the original model: overlap 0.532, compared with 0.466 for V2 and 0.321 for the refinement. The authors’ timepoint metadata is incomplete, so this case stays outside the main benchmark. Its poorer result is retained. The 21-scan run was interrupted and resumed after validating the completed masks. These are retrospective research results. The refined method remains an offline experiment, and no website model was replaced. It has not established tumour-type diagnosis, healthy-brain recognition or clinical accuracy.</p></section>
+<section class="panel" id="focusedTrainingEvidence"><h2>Focused training: three completed passes</h2>
+
+
+
+
+
+
+
+
+
+<p>We selected sections where the model missed outlined tissue or marked extra tissue, then trained on those sections in three passes over the same 40 training scans. Ten validation scans and all 21 previously evaluated scans stayed outside training. A pass revisits the training scans; it does not add new patients.</p>
+
+
+
+
+
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Completed focused training results; scroll horizontally if needed"><table><caption>Ten already known validation scans. V2 reference overlap: 0.642. All ten comparisons completed after each pass.</caption><thead><tr><th scope="col">Training pass</th><th scope="col">Mean outline overlap</th><th scope="col">Improved / worsened versus V2</th></tr></thead><tbody><tr><th scope="row">Pass 1: 80 updates</th><td>0.667</td><td>8 / 2</td></tr><tr><th scope="row">Pass 2: 160 updates</th><td>0.669</td><td>5 / 5</td></tr><tr><th scope="row">Pass 3: 240 updates</th><td>0.674</td><td>8 / 2</td></tr></tbody></table></div>
+
+
+
+
+
+
+
+
+
+<p>Pass 3 was selected using the rule fixed before training: the highest eligible average on these validation scans. Its average overlap is 0.674, with 8 improvements and 2 declines. 1 scan declined by more than 0.05. The rule guides research development; it does not establish clinical readiness.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>Boundary checks add another view of the errors.</strong> On the same ten scans, average boundary distance changed from 7.0 mm to 4.7 mm: 7 improved and 3 worsened. We measured distances between surface voxel centres using the recorded scan spacing and averaged both directions. These checks did not change the selection rule. A smaller average can still leave substantial errors in individual scans.</p>
+
+
+
+
+
+
+
+
+
+<p>One validation scan still marked about 16 mL against an expert outline of about 4 mL. Every decline remains in the record. These are known development cases, not a new independent test.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>This candidate failed the development checks and was not adopted.</strong> The required average improvement, limit on substantial declines and consistency between scan groups were not met.</p><div class="table-scroll" tabindex="0" role="region" aria-label="All 21 observed scans: saved model comparison"><table><caption>All 21 previously viewed cases retained. Processing failures contribute zero to the means.</caption><thead><tr><th scope="col">Method</th><th scope="col">Mean outline overlap</th></tr></thead><tbody><tr><th scope="row">Original model</th><td>0.471</td></tr><tr><th scope="row">V2 reference</th><td>0.545</td></tr><tr><th scope="row">Earlier larger-context candidate</th><td>0.550</td></tr><tr><th scope="row">Earlier eight-view refinement</th><td>0.558</td></tr><tr><th scope="row">Selected focused candidate</th><td>0.546</td></tr></tbody></table></div><p>The focused candidate improved 9 scans and worsened 12 versus V2, with 0 processing failures. 8 scans declined by more than 0.05. These are retrospective development results; the answers were already known. This comparison did not change the selected training pass.</p>
+
+
+
+
+
+
+
+
+
+<h3>Where did it miss tissue?</h3>
+
+
+
+
+
+
+
+
+
+<p>We also checked separated pieces of the expert outlines on all 21 scans. Among 30 pieces measuring at least 1 mL, V2 missed 1 completely and the focused candidate missed 6 completely. Every smaller piece was also retained in the analysis. A piece is a connected part of an annotation; these counts do not mean that there were 30 separate tumours.</p>
+
+
+
+
+
+
+
+
+
+<p>The candidate marked less extra tissue overall but missed more outlined tissue overall. In one already known difficult scan, it captured only 6.0% of the expert outline and missed 3.367 mL of its 3.581 mL. This selected example shows why a single average can hide serious errors.</p>
+
+
+
+
+
+
+
+
+
+<p>These are additional measurements of the same saved predictions. They do not establish diagnostic accuracy, tumour type or performance on a healthy brain.</p>
+
+
+
+
+
+
+
+
+
+<p><strong>Precise tumour detection in every case remains unproven.</strong> Outline measurements cannot determine tumour type or certify a healthy brain. The website offers its official pretrained models; this focused candidate remains a separate research experiment. No clinical accuracy or perfection has been established.</p>
+
+
+
+
+
+
+
+
+
+<p>Saved evidence updated: 2026-10-05 19:02:53 UTC.</p></section>
+<section class="panel" id="t1DetectionEvidence"><h2>Finding a tumour: false alarms still need improvement</h2>
+
+
+
+
+<p>We trained a separate research model using one kind of MRI called T1. It revisited the same 22 training studies over 20 passes, completing 440 updates. Seven other studies provided development checks. Seven reserved MRI studies remain unopened.</p>
+
+
+
+
+<p><strong>Every candidate incorrectly flagged both scans labelled “no tumour.”</strong> The model called all seven checking scans tumour-present. Always saying “tumour” would give the same five correct answers. This experiment has not demonstrated reliable tumour detection and has not replaced a website model.</p>
+
+
+
+
+<div class="table-scroll" tabindex="0" role="region" aria-label="Completed T1 detection checks"><table><caption>All seven checking people are retained after each candidate. These are known development cases.</caption><thead><tr><th scope="col">Training progress</th><th scope="col">Processed</th><th scope="col">Correct answers</th><th scope="col">Tumour-labelled scans recognised</th><th scope="col">No-tumour-labelled scans recognised</th><th scope="col">False alarms</th><th scope="col">Decision</th></tr></thead><tbody><tr><th scope="row">110 updates</th><td>7/7</td><td>5/7</td><td>5/5</td><td>0/2</td><td>2</td><td>Failed</td></tr><tr><th scope="row">220 updates</th><td>7/7</td><td>5/7</td><td>5/5</td><td>0/2</td><td>2</td><td>Failed</td></tr><tr><th scope="row">440 updates</th><td>7/7</td><td>5/7</td><td>5/5</td><td>0/2</td><td>2</td><td>Failed</td></tr></tbody></table></div>
+
+
+
+
+<p>A score of 5/7 is 71.4%, but it hides that neither no-tumour scan was recognised. With only seven checking people, the statistical interval for this accuracy is very wide: 29.0%–96.3%. It does not describe performance on patients or every tumour type. A model's high research score is not a diagnosis or a person's chance of having a tumour.</p>
+
+
+
+
+<details><summary>How the results were checked</summary><p>All 29 development MRIs passed source checks and technical intake, and all 29 full-field inputs were prepared. The detector has about 4.4 million trainable parameters. Each of its 60 parameter tensors updated across every completed training pass. Three saved models and all 21 checking predictions were independently reloaded and recomputed. The original interrupted transfers and failed training attempt remain in the evidence record.</p><p>A training guard was corrected after a numerical replay showed that a valid tiny update rounded to the same stored value. The model, training settings, patient roles, score threshold and acceptance requirements stayed fixed. Fifteen artificial-input checks tested damaged files, wrong scan types and missing geometry. Those technical checks do not measure clinical detection accuracy.</p></details>
+
+
+
+
+<p>These <a href="https://openneuro.org/datasets/ds001226/versions/5.0.1">public research scans</a> come from a small selected cohort. Its legacy tumour labels do not supply modern molecular tumour types. A source label of “no tumour” does not certify that every brain condition is absent. The single-T1 adaptation is a separate unvalidated experiment based on the <a href="https://github.com/Project-MONAI/model-zoo/tree/dev/models/brats_mri_segmentation">published MONAI model</a>.</p><div id="featureHeadEvidence"><h3>Latest experiment: fewer false alarms, one missed tumour</h3>
+
+
+
+
+<p>We refitted the decision layer using the same 22 training studies. On the seven known development checks, it recognised four of five tumour-labelled scans and one of two no-tumour scans. It made one false alarm and missed one tumour. <strong>This candidate also failed and was not adopted.</strong></p>
+
+
+
+
+<p>Both methods gave five correct answers out of seven, but their mistakes differed. Reducing false alarms is insufficient if tumour recognition worsens. The saved results were reproduced independently from all 29 MRI inputs. These are repeated development checks, not a claim of clinical accuracy or a healthy-brain assessment.</p></div>
+
+
+
+
+</section>
+<section class="panel" id="spatialHeadEvidence"><h2>More features did not improve tumour recognition</h2><p>We tested a decision layer that retained information from different parts of the MRI field. It correctly matched four of seven known development studies: three of five tumour-labelled scans and one of two no-tumour scans. It missed two tumours and made one false alarm. <strong>This experiment was rejected.</strong></p><p>All 29 feature vectors and seven checking predictions were reproduced independently. These repeated development checks do not establish performance on new patients. The next experiment adds published tumour-region references to training, with its acceptance requirements fixed in advance.</p></section>
+<section class="panel" id="maskGuidedEvidence"><h2>Latest training: the false alarms remain</h2><p>We added 15 published tumour-region references to training and completed another 440 updates using 22 MRI studies. On seven known development checks, the new model recognised all five tumour-labelled scans but incorrectly flagged both no-tumour scans. <strong>It failed and was not adopted.</strong></p><p>A final decision-layer refit recognised four of five tumour-labelled scans and one of two controls. It missed one tumour and made one false alarm, so it also failed. Saved weights, update records, MRI features and checking predictions were independently verified. Seven reserved MRIs remain unopened.</p><p>These results do not establish tumour type, grade or brain health. A working upload and region-marking pipeline is different from a validated diagnosis. Our actual website check matched a public reference with whole/core/enhancing overlap scores of 0.834/0.923/0.825, while still missing reference tissue. Those overlap scores are not disease-detection accuracy.</p></section>
+<section class="panel" id="gpuSpeedEvidence"><h2>Working website upgrade: local GPU processing</h2><p>SegResNet now uses the verified GPU on this computer. Our actual website test uploaded all four prepared image sets and completed in 56.9 seconds. Its saved markings were identical to the earlier CPU run, which took 524.1 seconds while training ran alongside it. The GPU profile took 51.1 seconds after training finished. These runs had different background loads, so they are not a general speed guarantee.</p><p>The website now shows processing progress and elapsed minutes. Once saved markings pass consistency checks, the viewer opens the most marked slice in the current view. MRI processing files are physically stored on D. All 44 software tests passed, and the real GPU HTTP workflow produced 21 valid progress observations.</p><p><strong>This improves waiting time and usability. It does not establish tumour-type accuracy or certify a healthy brain.</strong> The additional classifiers still failed their development requirements and were not installed. The public-study comparison measures overlap with research markings; patient-level clinical accuracy remains unproved. The desktop browser helper was unavailable, so rendered interaction checks could not be completed.</p></section>
+</details>
+
+
+
+
+</main><footer>Research exploration. Qualified clinicians retain responsibility for clinical interpretation.</footer>
+
+
+
+
+
+
+
+
+
+<script src="/about-navigation.js" defer></script>
+</body></html>
+
+
+
+
+
+
+
+
+
