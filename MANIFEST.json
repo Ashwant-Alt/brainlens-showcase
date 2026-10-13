@@ -20,11 +20,6 @@
     "sha256": "bd825ed7d7ae2c9bc2526832548f0c41363aadcb9c1ee7e8dcca86b345364c78"
   },
   {
-    "file": "NARRATION.txt",
-    "bytes": 949,
-    "sha256": "20f9575e1359d04c6c111ce4b9839910e5971159114c578a07f06399fa389d6b"
-  },
-  {
     "file": "README.md",
     "bytes": 2185,
     "sha256": "eec1606661fbf3e07cdd328cb4775ff66b4f331a2b1ea873409729523a09a9da"
