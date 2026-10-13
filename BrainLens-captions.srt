@@ -1,0 +1,99 @@
+1
+00:00:00,300 --> 00:00:02,505
+What can AI really tell us about
+
+2
+00:00:02,505 --> 00:00:03,391
+a brain MRI?
+
+3
+00:00:04,323 --> 00:00:05,595
+This is BrainLens,
+
+4
+00:00:05,891 --> 00:00:08,050
+a research website built to make scan
+
+5
+00:00:08,050 --> 00:00:09,914
+results easier to explore.
+
+6
+00:00:10,323 --> 00:00:12,982
+Upload a supported MRI slice and review
+
+7
+00:00:12,982 --> 00:00:14,709
+the suggested tumour category.
+
+8
+00:00:15,368 --> 00:00:16,618
+In this saved example,
+
+9
+00:00:16,868 --> 00:00:19,050
+the dataset label is meningioma.
+
+10
+00:00:19,505 --> 00:00:22,073
+BrainLens also suggests meningioma.
+
+11
+00:00:22,436 --> 00:00:23,845
+That's a match for this image,
+
+12
+00:00:24,118 --> 00:00:26,232
+not proof that every prediction will be
+
+13
+00:00:26,232 --> 00:00:29,232
+correct. For compatible three-dimensional scans,
+
+14
+00:00:29,232 --> 00:00:30,982
+explore different views,
+
+15
+00:00:31,300 --> 00:00:33,982
+inspect candidate regions and check their measured
+
+16
+00:00:33,982 --> 00:00:37,436
+volumes. The core research workflows are built.
+
+17
+00:00:37,936 --> 00:00:41,527
+Experimental two-dimensional tumour outlines still need improvement,
+
+18
+00:00:41,550 --> 00:00:43,164
+so they remain offline.
+
+19
+00:00:43,755 --> 00:00:46,141
+Category suggestions are available separately.
+
+20
+00:00:46,777 --> 00:00:49,118
+These suggestions aren't confirmed diagnoses,
+
+21
+00:00:49,936 --> 00:00:52,277
+and a negative result doesn't prove a
+
+22
+00:00:52,277 --> 00:00:55,232
+healthy brain. Our next milestone is independent
+
+23
+00:00:55,232 --> 00:00:58,777
+evaluation using properly separated patient data.
+
+24
+00:00:58,777 --> 00:01:01,982
+I'm sharing BrainLens to invite feedback and
+
+25
+00:01:01,982 --> 00:01:03,686
+help make the next version better.

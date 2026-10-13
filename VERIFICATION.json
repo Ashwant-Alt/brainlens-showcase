@@ -1,0 +1,52 @@
+{
+  "videoSHA256": "7a6d54fccd3f036994816824e8e52778edf91985ba4291220db135cca00568fb",
+  "videoBytes": 25700765,
+  "playback": {
+    "width": 1080,
+    "height": 1350,
+    "duration": 64.9511,
+    "seeks": [
+      {
+        "time": 0.5,
+        "readyState": 4
+      },
+      {
+        "time": 7.794131,
+        "readyState": 4
+      },
+      {
+        "time": 16.237775,
+        "readyState": 4
+      },
+      {
+        "time": 25.98044,
+        "readyState": 4
+      },
+      {
+        "time": 35.723105,
+        "readyState": 4
+      },
+      {
+        "time": 45.465769,
+        "readyState": 4
+      },
+      {
+        "time": 55.208434,
+        "readyState": 4
+      },
+      {
+        "time": 63.002566,
+        "readyState": 4
+      }
+    ],
+    "decodedFrames": 90,
+    "audioPresent": true,
+    "error": null
+  },
+  "newInference": false,
+  "newTraining": false,
+  "date": "2026-10-13",
+  "captionTiming": "Measured spoken-word timestamps; follows audio playback position",
+  "syntheticNarration": true,
+  "scope": "Technical playback verification; not clinical validation"
+}

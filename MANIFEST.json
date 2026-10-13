@@ -1,0 +1,42 @@
+[
+  {
+    "file": "BrainLens-captions.srt",
+    "bytes": 1879,
+    "sha256": "e16e3115f3a983e2fcb1538dd0eb371932b227634a3a099ad8f6e1574ea31656"
+  },
+  {
+    "file": "BrainLens-demo.mp4",
+    "bytes": 25700765,
+    "sha256": "7a6d54fccd3f036994816824e8e52778edf91985ba4291220db135cca00568fb"
+  },
+  {
+    "file": "BrainLens-preview.png",
+    "bytes": 608909,
+    "sha256": "afa9fe07b02c43cc6703ed3ea27182caea1193f9368c121b634ee9587804937d"
+  },
+  {
+    "file": "CREDITS.md",
+    "bytes": 1486,
+    "sha256": "bd825ed7d7ae2c9bc2526832548f0c41363aadcb9c1ee7e8dcca86b345364c78"
+  },
+  {
+    "file": "LINKEDIN-POST.md",
+    "bytes": 1205,
+    "sha256": "9d5d7c4abb0a366c77c9a93eb252eaf2538f8ffb8ecfe02deab433a5a615daee"
+  },
+  {
+    "file": "NARRATION.txt",
+    "bytes": 949,
+    "sha256": "20f9575e1359d04c6c111ce4b9839910e5971159114c578a07f06399fa389d6b"
+  },
+  {
+    "file": "README.md",
+    "bytes": 2215,
+    "sha256": "49bdb61ea64c37bafa3b7aca082159c76fa8170f0ab921f2f38eae42523a957a"
+  },
+  {
+    "file": "VERIFICATION.json",
+    "bytes": 1136,
+    "sha256": "928bfe9219af2acad6e455a89f6666e330b0c6ee20ef9746b727aa978bed1881"
+  }
+]
