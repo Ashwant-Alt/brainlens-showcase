@@ -2,7 +2,7 @@
 
 BrainLens is a local brain-MRI research website designed to make model outputs easier to inspect and understand.
 
-[Watch or download the narrated demo](BrainLens-demo.mp4) · [Subtitle file](BrainLens-captions.srt) · [LinkedIn caption](LINKEDIN-POST.md)
+[Watch or download the narrated demo](BrainLens-demo.mp4) · [Subtitle file](BrainLens-captions.srt)
 
 ![BrainLens saved category example](BrainLens-preview.png)
 
