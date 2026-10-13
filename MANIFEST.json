@@ -1,10 +1,5 @@
 [
   {
-    "file": "BrainLens-captions.srt",
-    "bytes": 1879,
-    "sha256": "e16e3115f3a983e2fcb1538dd0eb371932b227634a3a099ad8f6e1574ea31656"
-  },
-  {
     "file": "BrainLens-demo.mp4",
     "bytes": 25700765,
     "sha256": "7a6d54fccd3f036994816824e8e52778edf91985ba4291220db135cca00568fb"
