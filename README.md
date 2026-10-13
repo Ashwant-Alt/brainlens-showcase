@@ -1,45 +1,39 @@
 # BrainLens
 
-A local brain MRI research application with a clear upload-and-review workflow.
+I’ve been building BrainLens to bring a few brain MRI research workflows into one place. You can explore a supported 2D slice, look through a 3D scan, and review the model outputs the app can currently produce.
 
-**[Download the application source](https://github.com/Ashwant-Alt/brainlens-showcase/raw/refs/heads/main/BrainLens-program-source.zip)** · **[Set it up](SETUP.md)** · **[How to use it](HOW-TO-USE.md)**
+**[Download the source](https://github.com/Ashwant-Alt/brainlens-showcase/raw/refs/heads/main/BrainLens-program-source.zip)** · **[Setup guide](SETUP.md)** · **[How to use BrainLens](HOW-TO-USE.md)**
 
-## Watch the demonstration
+## See it running
 
 https://github.com/user-attachments/assets/e9c3cf61-a31c-4d63-b3dd-cc0945e4ae6b
 
-[Download the video directly](https://github.com/Ashwant-Alt/brainlens-showcase/raw/refs/heads/main/BrainLens-demo.mp4) if your browser cannot play the embedded version. The video shows a saved **meningioma** suggestion matching the example's dataset label. One match does not establish general accuracy.
+The example shows BrainLens suggesting **meningioma**, which matches the label recorded for that sample. It’s one slice and one match, so it doesn’t tell us how well the model will work on other images.
 
-## What can it do?
+## What you can explore
 
-| Feature | What to expect |
-| --- | --- |
-| 2D MRI slice classification | With a separately installed compatible model, suggests glioma, meningioma, pituitary tumour or the no-tumour dataset category for one supported slice. |
-| 3D MRI viewer | Opens supported NIfTI volumes and shows axial, coronal and sagittal slices. |
-| 3D research segmentation | With compatible prepared four-sequence inputs and SegResNet weights, displays candidate glioma-region overlays and measured volumes. |
-| Review | Supports saved results, reopening, editable review notes and exports. |
-| 2D tumour outline | Unavailable; the experimental outline candidate remains offline. |
-| Whole-examination diagnosis or healthy-brain determination | Unsupported; results cannot establish either. |
+- **2D slice suggestions:** With a compatible model installed, BrainLens can suggest glioma, meningioma, pituitary tumour, or the dataset’s “no tumour” category for a supported image.
+- **3D scan viewer:** Open a supported NIfTI volume and move through axial, coronal, and sagittal views.
+- **Candidate glioma regions:** For compatible, prepared four-sequence scans, the separate SegResNet workflow can show candidate regions and volume measurements.
+- **Review tools:** Save results, reopen them, add notes, and export a review.
 
-## Start here
+The experimental 2D outline model is currently offline while it is improved. BrainLens does not provide a whole-examination tumour diagnosis or determine that a brain is healthy.
+
+## Trying it on your computer
 
 1. Download and extract **BrainLens-program-source.zip** into a new folder.
-2. Follow **[SETUP.md](SETUP.md)** to start the local website.
-3. Open **http://127.0.0.1:3000** on the same computer.
-4. For a supported JPG/PNG research slice, choose **Upload an MRI image**.
-5. Once a compatible model is installed and shown as available, upload the image, confirm the input requirements and select **Analyze image**.
-6. Read the suggested category and limitations. Use **[HOW-TO-USE.md](HOW-TO-USE.md)** for the detailed 2D and 3D workflows.
+2. Follow the [setup guide](SETUP.md) to start the local website.
+3. Open [http://127.0.0.1:3000](http://127.0.0.1:3000) on that computer.
+4. Follow [How to use BrainLens](HOW-TO-USE.md) to explore the viewer and review workflow.
 
-**Important setup limit:** the archive contains application source, not MRI datasets, Python environments or trained checkpoints. The interface and viewer can start without model assets. Classification and segmentation need their separately configured, trusted model files. This repository does not yet supply the 2D checkpoint, so a fresh visitor cannot immediately reproduce the demonstrated category prediction. GitHub does not host a live upload service.
+The source archive does not include MRI data, Python environments, or trained model checkpoints. The site and viewer can start without those files, but model-based features need separately configured, trusted model files. The 2D checkpoint is not included, so a new user cannot reproduce the category suggestion in the video straight from this repository. BrainLens also has no public upload service; it runs locally.
 
-## Package verification
+## A note on the research
 
-The archive contains 64 unchanged application files, setup/use instructions and a source checksum manifest. Size: 175,732 bytes. SHA256: `3474d1520d8219abe831293fe2a65fe5e36b6320fdd21160ce5f0dd3ebcdc072`.
+BrainLens is a research project, not a diagnostic tool. Its 2D suggestions apply to an uploaded slice; they do not establish what is happening across a complete MRI examination. A “no tumour” slice result does not mean the brain is healthy.
 
-The packaged source passed **67 source-only Node checks** on the existing Windows computer. The initial complete suite had five failures: missing Python/model assets prevented four integration checks; an omitted public evidence CSV caused the fifth. The CSV was then included, and its navigation check passed in the 67-check run. The complete installed-model suite and a clean-machine installation were not rerun or verified for this release. No new medical inference was performed.
+Testing has found missed tumour-labelled cases and inconsistent segmentation. The model scores are uncalibrated, and independent patient-level diagnostic validation has not been established. I’m sharing the project with those limitations in view.
 
-## Research scope
+The source package contains 64 application files and passed 67 source-only checks on the existing development computer. A clean-computer setup and the complete model-dependent test suite have not been verified. See [package verification](VERIFICATION.json) for the details.
 
-BrainLens is a research prototype. Suggestions are not confirmed diagnoses. A negative slice prediction does not establish a healthy brain. Scores are uncalibrated; independent patient-level diagnostic validation has not been established. Use permitted, de-identified research data only.
-
-See **[CREDITS.md](CREDITS.md)** for imagery, model and narration attribution. The source publication does not grant a new blanket licence for third-party components. Original local research files, models and the working application were preserved.
+For image, model, and narration acknowledgements, see [CREDITS.md](CREDITS.md). Third-party licenses still apply to their respective materials; publishing this source does not replace those licenses.
